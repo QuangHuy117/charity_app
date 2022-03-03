@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations
 
+import 'package:charity_app/CreateNewFundPage/create_new_fund_page.dart';
 import 'package:charity_app/DetailsPage/detail_page.dart';
+import 'package:charity_app/ProfilePage/profile_page.dart';
 import 'package:charity_app/icons/my_flutter_app_icons.dart';
 import 'package:charity_app/models/charity.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var format = NumberFormat('#,###,000');
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   List<Charity> listCharity = [
     Charity(
@@ -24,6 +27,7 @@ class _HomePageState extends State<HomePage> {
       organization: 'NCAPA',
       description:
           'The mission of this donation is to cultivate highly trained and capable Palestinian graduates with a proficiency in conversational English that will lead to their successful participation in the labor.',
+      image: 'assets/images/africa1.jpg',
       dateLeft: 20,
       targetMoney: 10000,
       raisedMoney: 530.65,
@@ -35,6 +39,7 @@ class _HomePageState extends State<HomePage> {
       organization: 'WHO',
       description:
           "After the crisis, the long-term effects on the well-being of children are still a concern. We're providing clothing, food, shelter, and ensuring children, especially girls, return to school.",
+      image: 'assets/images/africa2.jpg',
       dateLeft: 20,
       targetMoney: 100000,
       raisedMoney: 12400.85,
@@ -45,7 +50,165 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
+      drawer: SizedBox(
+        width: size.width * 0.8,
+        child: Drawer(
+          child: Container(
+            decoration: BoxDecoration(color: Color(0xFF209FA6)),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                UserAccountsDrawerHeader(
+                  margin: EdgeInsets.only(bottom: 0, top: size.height * 0.02),
+                  currentAccountPicture: ClipRRect(
+                    borderRadius: BorderRadius.circular(size.width * 0.08),
+                    child: Image(
+                      image: AssetImage('assets/images/avatar.jpg'),
+                      height: size.height * 0.08,
+                      width: size.width * 0.15,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  accountName: Text(
+                    'David William',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.white,
+                    ),
+                  ),
+                  accountEmail: Text(
+                    'davidwilliam@gmail.com',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white54,
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF209FA6),
+                  ),
+                ),
+                // Divider(
+                //   color: Colors.white,
+                // ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    selectedItem(context, 0);
+                  },
+                  child: ListTile(
+                    title: Text('Create Fund',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white70,
+                        )),
+                    trailing: Icon(
+                      Icons.arrow_right,
+                      size: 30,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    selectedItem(context, 1);
+                  },
+                  child: ListTile(
+                    title: Text('Profile',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white70,
+                        )),
+                    trailing: Icon(
+                      Icons.arrow_right,
+                      size: 30,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    // selectedItem(context, 0);
+                  },
+                  child: ListTile(
+                    title: Text('Settings',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white70,
+                        )),
+                    trailing: Icon(
+                      Icons.arrow_right,
+                      size: 30,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    // selectedItem(context, 0);
+                  },
+                  child: ListTile(
+                    title: Text('History',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white70,
+                        )),
+                    trailing: Icon(
+                      Icons.arrow_right,
+                      size: 30,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    selectedItem(context, 2);
+                  },
+                  child: ListTile(
+                    title: Text('Payment',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white70,
+                        )),
+                    trailing: Icon(
+                      Icons.arrow_right,
+                      size: 30,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                Divider(
+                  color: Colors.white,
+                  thickness: 1,
+                ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                ListTile(
+                  title: Text(
+                    'Log Out',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  trailing: Icon(
+                    Icons.logout,
+                    size: 26,
+                    color: Colors.white70,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
@@ -61,7 +224,9 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      _scaffoldKey.currentState!.openDrawer();
+                    },
                     child: Container(
                       padding: EdgeInsets.all(size.width * 0.01),
                       decoration: BoxDecoration(
@@ -323,7 +488,7 @@ class _HomePageState extends State<HomePage> {
                           elevation: 0,
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.05,
+                                horizontal: size.width * 0.04,
                                 vertical: size.width * 0.04),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -331,9 +496,8 @@ class _HomePageState extends State<HomePage> {
                                 ClipRRect(
                                   borderRadius:
                                       BorderRadius.circular(size.width * 0.07),
-                                  child: Image(
-                                    image:
-                                        AssetImage('assets/images/africa.jpg'),
+                                  child: Image.asset(
+                                    '${listCharity[index].image}',
                                     fit: BoxFit.cover,
                                     height: size.height * 0.15,
                                     width: size.width,
@@ -406,5 +570,27 @@ class _HomePageState extends State<HomePage> {
         ),
       )),
     );
+  }
+
+  void selectedItem(BuildContext context, int index) {
+    Navigator.pop(context);
+
+    switch (index) {
+      case 0:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => CreateNewFundPage(),
+        ));
+        break;
+      case 1:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ProfilePage(),
+        ));
+        break;
+      case 2:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => DetailsPage(),
+        ));
+        break;
+    }
   }
 }

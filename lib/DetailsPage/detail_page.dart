@@ -12,6 +12,9 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  TextEditingController money = TextEditingController();
+  bool joinStatus = true;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -19,8 +22,8 @@ class _DetailsPageState extends State<DetailsPage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         minimum: EdgeInsets.only(
-          left: size.width * 0.05,
-          right: size.width * 0.05,
+          left: size.width * 0.03,
+          right: size.width * 0.03,
           top: size.height * 0.05,
           bottom: size.height * 0.01,
         ),
@@ -34,12 +37,17 @@ class _DetailsPageState extends State<DetailsPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Back',
-                      style: TextStyle(
-                        color: Color(0xFF209FA6),
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Back',
+                        style: TextStyle(
+                          color: Color(0xFF209FA6),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     Text(
@@ -56,7 +64,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   height: size.height * 0.03,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(size.width * 0.07),
@@ -92,43 +100,43 @@ class _DetailsPageState extends State<DetailsPage> {
                 SizedBox(
                   height: size.height * 0.01,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    SizedBox(
+                      width: size.width * 0.6,
+                      child: Text(
+                        'Education Dono For Poor Child',
+                        style: TextStyle(
+                          fontSize: 28,
+                          color: Color(0xFF1B2441),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          width: size.width * 0.6,
-                          child: Text(
-                            'Education Dono For Poor Child',
-                            style: TextStyle(
-                              fontSize: 28,
-                              color: Color(0xFF1B2441),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.01,
-                        ),
                         Text(
                           '20 Days Left',
                           style: TextStyle(
                             fontSize: 18,
-                            color: Color(0xFF209FA6).withOpacity(0.5),
+                            color: Color(0xFF1B2441).withOpacity(0.5),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '40 people have joined',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF1B2441).withOpacity(0.5),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
-                    ),
-                    Text(
-                      'AS',
-                      style: TextStyle(
-                        fontSize: 28,
-                        color: Color(0xFF1B2441),
-                        fontWeight: FontWeight.bold,
-                      ),
                     ),
                   ],
                 ),
@@ -167,7 +175,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                             ),
                             Text(
-                              '\$10.000',
+                              '\$10,000',
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Color(0xFF1B2441),
@@ -229,32 +237,58 @@ class _DetailsPageState extends State<DetailsPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Image(
-                      image: AssetImage('assets/images/ncapa_logo.png'),
-                      fit: BoxFit.contain,
-                      height: size.height * 0.07,
-                      width: size.width * 0.09,
+                    Row(
+                      children: [
+                        Image(
+                          image: AssetImage('assets/images/ncapa_logo.png'),
+                          fit: BoxFit.contain,
+                          height: size.height * 0.07,
+                          width: size.width * 0.09,
+                        ),
+                        SizedBox(
+                          width: size.width * 0.02,
+                        ),
+                        Text(
+                          'by',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF209FA6).withOpacity(0.5),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          width: size.width * 0.01,
+                        ),
+                        Text(
+                          'NCAPA',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Color(0xFF209FA6),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      width: size.width * 0.02,
+                      width: size.width * 0.1,
                     ),
-                    Text(
-                      'by',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF209FA6).withOpacity(0.5),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      width: size.width * 0.01,
-                    ),
-                    Text(
-                      'NCAPA',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Color(0xFF209FA6),
-                        fontWeight: FontWeight.bold,
+                    Container(
+                      height: size.height * 0.045,
+                      width: size.width * 0.2,
+                      margin:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.06),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            joinStatus = !joinStatus;
+                          });
+                        },
+                        child: Text(joinStatus ? 'Join' : 'Cancel', style: TextStyle(fontSize: 18, color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.bold),),
+                        style: ElevatedButton.styleFrom(
+                            primary: joinStatus ? Color(0xFF209FA6) : Colors.red.shade300,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(size.width * 0.02))),
                       ),
                     )
                   ],
@@ -291,8 +325,6 @@ class _DetailsPageState extends State<DetailsPage> {
                   margin: EdgeInsets.symmetric(horizontal: size.width * 0.06),
                   child: ElevatedButton(
                     onPressed: () {
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (context) => PaymentPage()));
                       showModalBottomSheet(
                         context: context,
                         isScrollControlled: true,
@@ -303,29 +335,198 @@ class _DetailsPageState extends State<DetailsPage> {
                                 topRight: Radius.circular(size.width * 0.1))),
                         builder: (context) {
                           return Padding(
-                            padding: EdgeInsets.symmetric(vertical: size.width * 0.03),
+                            padding: EdgeInsets.symmetric(
+                                vertical: size.width * 0.05),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text('How Much You Want To Donate?'),
-                                // Text(('data'))
+                                Text(
+                                  'How Much You Want To Donate?',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Color(0xFF1B2441),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Container(
+                                  height: size.height * 0.06,
+                                  width: size.width * 0.8,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.06),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.grey, width: 1),
+                                    borderRadius: BorderRadius.circular(
+                                        size.width * 0.03),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    '\$50',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Color(0xFF1B2441),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Container(
+                                  height: size.height * 0.06,
+                                  width: size.width * 0.8,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.06),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.grey, width: 1),
+                                    borderRadius: BorderRadius.circular(
+                                        size.width * 0.03),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    '\$100',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Color(0xFF1B2441),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Container(
+                                  height: size.height * 0.06,
+                                  width: size.width * 0.8,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.06),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.grey, width: 1),
+                                    borderRadius: BorderRadius.circular(
+                                        size.width * 0.03),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    '\$200',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Color(0xFF1B2441),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Container(
+                                  height: size.height * 0.06,
+                                  width: size.width * 0.8,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.06),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.grey, width: 1),
+                                    borderRadius: BorderRadius.circular(
+                                        size.width * 0.03),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    '\$500',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Color(0xFF1B2441),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Text(
+                                  'Or',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF209FA6).withOpacity(0.5),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Container(
+                                    height: size.height * 0.06,
+                                    width: size.width * 0.8,
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.06),
+                                    child: TextFormField(
+                                      controller: money,
+                                      textAlign: TextAlign.center,
+                                      decoration: InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      size.width * 0.03),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      size.width * 0.03),
+                                              borderSide: BorderSide(
+                                                  color: Colors.blue)),
+                                          hintText: "Enter Here",
+                                          hintStyle: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w700,
+                                              color: Color(0xFF209FA6)
+                                                  .withOpacity(0.4))),
+                                    )),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Container(
+                                  height: size.height * 0.06,
+                                  width: size.width * 0.8,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.06),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => PaymentPage(
+                                                    money: money.text,
+                                                  )));
+                                    },
+                                    child: Text(
+                                      'Donate',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18,
+                                        color: Colors.white.withOpacity(0.8),
+                                      ),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Color(0xFF209FA6),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                size.width * 0.04))),
+                                  ),
+                                ),
+                                Padding(
+                                    padding: EdgeInsets.only(
+                                  bottom:
+                                      MediaQuery.of(context).viewInsets.bottom,
+                                )),
                               ],
                             ),
-                            // children: [
-                            //   ListTile(
-                            //     leading: Icon(Icons.share),
-                            //     title: Text('Share'),
-                            //   ),
-                            //   ListTile(
-                            //     leading: Icon(Icons.copy),
-                            //     title: Text('Copy Link'),
-                            //   ),
-                            //   ListTile(
-                            //     leading: Icon(Icons.edit),
-                            //     title: Text('Edit'),
-                            //   ),
-                            // ],
                           );
                         },
                       );
