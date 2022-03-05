@@ -2,6 +2,7 @@
 
 import 'package:charity_app/CreateNewFundPage/create_new_fund_page.dart';
 import 'package:charity_app/DetailsPage/detail_page.dart';
+import 'package:charity_app/PaymentMethodPage/payment_method_page.dart';
 import 'package:charity_app/ProfilePage/profile_page.dart';
 import 'package:charity_app/icons/my_flutter_app_icons.dart';
 import 'package:charity_app/models/charity.dart';
@@ -588,7 +589,7 @@ class _HomePageState extends State<HomePage> {
         break;
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => DetailsPage(),
+          builder: (context) => PaymentMethodPage(num: 0,),
         ));
         break;
     }

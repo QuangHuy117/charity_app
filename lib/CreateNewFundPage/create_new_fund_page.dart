@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:charity_app/HomePage/home_page.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -217,10 +218,11 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                 margin: EdgeInsets.symmetric(horizontal: size.width * 0.06),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CreateNewFundPage()));
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => HomePage()));
+                    Navigator.pop(context);
                   },
                   child: Text(
                     ' Publish Now',

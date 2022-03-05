@@ -274,7 +274,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                     Container(
                       height: size.height * 0.045,
-                      width: size.width * 0.2,
+                      width: size.width * 0.25,
                       margin:
                           EdgeInsets.symmetric(horizontal: size.width * 0.06),
                       child: ElevatedButton(
@@ -283,9 +283,17 @@ class _DetailsPageState extends State<DetailsPage> {
                             joinStatus = !joinStatus;
                           });
                         },
-                        child: Text(joinStatus ? 'Join' : 'Cancel', style: TextStyle(fontSize: 18, color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.bold),),
+                        child: Text(
+                          joinStatus ? 'Join' : 'Cancel',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white.withOpacity(0.8),
+                              fontWeight: FontWeight.bold),
+                        ),
                         style: ElevatedButton.styleFrom(
-                            primary: joinStatus ? Color(0xFF209FA6) : Colors.red.shade300,
+                            primary: joinStatus
+                                ? Color(0xFF209FA6)
+                                : Colors.red.shade300,
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.circular(size.width * 0.02))),
@@ -353,98 +361,146 @@ class _DetailsPageState extends State<DetailsPage> {
                                   height: size.height * 0.02,
                                 ),
                                 Container(
-                                  height: size.height * 0.06,
-                                  width: size.width * 0.8,
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: size.width * 0.06),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.grey, width: 1),
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.03),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    '\$50',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Color(0xFF1B2441),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
+                                    height: size.height * 0.06,
+                                    width: size.width * 0.8,
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.06),
+                                    child: TextFormField(
+                                      readOnly: true,
+                                      enableInteractiveSelection: true,
+                                      onTap: () {
+                                        setState(() {
+                                          money.text = '50';
+                                        });
+                                      },
+                                      textAlign: TextAlign.center,
+                                      decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                size.width * 0.03),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey.shade300)),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                size.width * 0.03),
+                                            borderSide:
+                                                BorderSide(color: Colors.blue)),
+                                        hintText: "\$50",
+                                        hintStyle: TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFF1B2441),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )),
                                 SizedBox(
                                   height: size.height * 0.02,
                                 ),
                                 Container(
-                                  height: size.height * 0.06,
-                                  width: size.width * 0.8,
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: size.width * 0.06),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.grey, width: 1),
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.03),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    '\$100',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Color(0xFF1B2441),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
+                                    height: size.height * 0.06,
+                                    width: size.width * 0.8,
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.06),
+                                    child: TextFormField(
+                                      readOnly: true,
+                                      enableInteractiveSelection: true,
+                                      onTap: () {
+                                        setState(() {
+                                          money.text = '100';
+                                        });
+                                      },
+                                      textAlign: TextAlign.center,
+                                      decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                size.width * 0.03),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey.shade300)),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                size.width * 0.03),
+                                            borderSide:
+                                                BorderSide(color: Colors.blue)),
+                                        hintText: "\$100",
+                                        hintStyle: TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFF1B2441),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )),
                                 SizedBox(
                                   height: size.height * 0.02,
                                 ),
                                 Container(
-                                  height: size.height * 0.06,
-                                  width: size.width * 0.8,
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: size.width * 0.06),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.grey, width: 1),
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.03),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    '\$200',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Color(0xFF1B2441),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
+                                    height: size.height * 0.06,
+                                    width: size.width * 0.8,
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.06),
+                                    child: TextFormField(
+                                      readOnly: true,
+                                      enableInteractiveSelection: true,
+                                      onTap: () {
+                                        setState(() {
+                                          money.text = '200';
+                                        });
+                                      },
+                                      textAlign: TextAlign.center,
+                                      decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                size.width * 0.03),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey.shade300)),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                size.width * 0.03),
+                                            borderSide:
+                                                BorderSide(color: Colors.blue)),
+                                        hintText: "\$200",
+                                        hintStyle: TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFF1B2441),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )),
                                 SizedBox(
                                   height: size.height * 0.02,
                                 ),
                                 Container(
-                                  height: size.height * 0.06,
-                                  width: size.width * 0.8,
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: size.width * 0.06),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.grey, width: 1),
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.03),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    '\$500',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Color(0xFF1B2441),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
+                                    height: size.height * 0.06,
+                                    width: size.width * 0.8,
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.06),
+                                    child: TextFormField(
+                                      readOnly: true,
+                                      enableInteractiveSelection: true,
+                                      onTap: () {
+                                        setState(() {
+                                          money.text = '500';
+                                        });
+                                      },
+                                      textAlign: TextAlign.center,
+                                      decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                size.width * 0.03),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey.shade300)),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                size.width * 0.03),
+                                            borderSide:
+                                                BorderSide(color: Colors.blue)),
+                                        hintText: "\$500",
+                                        hintStyle: TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFF1B2441),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )),
                                 SizedBox(
                                   height: size.height * 0.02,
                                 ),
@@ -467,6 +523,11 @@ class _DetailsPageState extends State<DetailsPage> {
                                     child: TextFormField(
                                       controller: money,
                                       textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Color(0xFF1B2441),
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                       decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
                                               borderRadius:

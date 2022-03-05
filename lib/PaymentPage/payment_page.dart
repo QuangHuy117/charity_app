@@ -1,5 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new, unnecessary_string_interpolations
 
+import 'package:charity_app/PaymentMethodPage/payment_method_page.dart';
+import 'package:charity_app/models/payment.dart';
 import 'package:flutter/material.dart';
 
 class PaymentPage extends StatefulWidget {
@@ -11,10 +13,35 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
+
+  Payment payment = new Payment(
+    name: 'MasterCard',
+    image: 'assets/images/Mastercard_logo.png',
+    stk: '159-107-1396',
+    date: 'Ex-4/22',
+  );
+
+  Future getPaymentMethod(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PaymentMethodPage(num: 1,)),
+    );
+    setState(() {
+      if (result == null) {
+        return;
+      } else {
+        setState(() {
+          payment = result;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         minimum: EdgeInsets.symmetric(
           horizontal: size.width * 0.05,
@@ -40,81 +67,87 @@ class _PaymentPageState extends State<PaymentPage> {
               SizedBox(
                 height: size.height * 0.04,
               ),
-              Container(
-                height: size.height * 0.15,
-                width: size.width,
-                padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.05,
-                    vertical: size.height * 0.03),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300, width: 1),
-                    borderRadius: BorderRadius.circular(size.width * 0.06)),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Payment',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color(0xFF1B2441),
-                            fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  height: size.height * 0.15,
+                  width: size.width,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.05,
+                      vertical: size.height * 0.03),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300, width: 1),
+                      borderRadius: BorderRadius.circular(size.width * 0.06)),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '${payment.name} Payment',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Color(0xFF1B2441),
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Icon(
-                          Icons.edit,
-                          size: 15,
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: size.height * 0.03,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Image(
-                              image: AssetImage(
-                                  'assets/images/Mastercard_logo.png'),
-                              fit: BoxFit.contain,
-                              height: size.height * 0.03,
-                              width: size.width * 0.12,
+                          GestureDetector(
+                            onTap: () => getPaymentMethod(context),
+                            child: Icon(
+                              Icons.edit,
+                              size: 15,
                             ),
-                            SizedBox(
-                              width: size.width * 0.02,
-                            ),
-                            Text(
-                              '159-107-1396',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF1B2441),
-                                fontWeight: FontWeight.w600,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Image(
+                                image: AssetImage(
+                                    '${payment.image}'),
+                                fit: BoxFit.contain,
+                                height: size.height * 0.03,
+                                width: size.width * 0.12,
                               ),
+                              SizedBox(
+                                width: size.width * 0.02,
+                              ),
+                              Text(
+                                '${payment.stk}',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Color(0xFF1B2441),
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            '${payment.date}',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF1B2441),
+                              fontWeight: FontWeight.bold,
                             ),
-                          ],
-                        ),
-                        Text(
-                          'Ex-4/22',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF1B2441),
-                            fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        Text(
-                          '123',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF1B2441),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
+                          Text(
+                            '123',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF1B2441),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -163,7 +196,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     ),
                   ),
                   Text(
-                    'Master Card',
+                    '${payment.name}',
                     style: TextStyle(
                       fontSize: 18,
                       color: Color(0xFF1B2441),
@@ -218,7 +251,9 @@ class _PaymentPageState extends State<PaymentPage> {
                 width: size.width * 0.8,
                 margin: EdgeInsets.symmetric(horizontal: size.width * 0.06),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     'Pay Now',
                     style: TextStyle(
