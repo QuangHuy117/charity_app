@@ -250,36 +250,33 @@ class _ProfilePageState extends State<ProfilePage> {
                                             SizedBox(
                                               height: size.height * 0.03,
                                             ),
-                                            Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    '\$${listCharity[index].raisedMoney} Raised',
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontFamily: 'Fredoka',
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Color(0xFF209FA6),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    'Target - \$' +
-                                                        format.format(
-                                                            listCharity[index]
-                                                                .targetMoney),
-                                                    style: TextStyle(
-                                                      fontSize: 16,
-                                                      fontFamily: 'Fredoka',
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Color(0xFF1B2441)
-                                                          .withOpacity(0.7),
-                                                    ),
-                                                  ),
-                                                ]),
+                                            // Row(
+                                            //     mainAxisAlignment:
+                                            //         MainAxisAlignment
+                                            //             .spaceBetween,
+                                            //     children: [
+                                            // Text(
+                                            //   '\$${listCharity[index].raisedMoney} Raised',
+                                            //   style: TextStyle(
+                                            //     fontSize: 20,
+                                            //     fontFamily: 'Fredoka',
+                                            //     fontWeight: FontWeight.bold,
+                                            //     color: Color(0xFF209FA6),
+                                            //   ),
+                                            // ),
+                                            Text(
+                                              'Total Amount - \$' +
+                                                  format.format(
+                                                      listCharity[index]
+                                                          .targetMoney),
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontFamily: 'Fredoka',
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF209FA6),
+                                              ),
+                                            ),
+                                            // ]),
                                           ],
                                         ),
                                       ),
@@ -294,7 +291,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     Positioned(
-                      bottom: size.height * 0.02,
+                      bottom: size.height * 0.04,
                       child: Container(
                         height: size.height * 0.065,
                         width: size.width * 0.8,

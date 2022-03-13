@@ -104,7 +104,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: size.width * 0.6,
+                      width: size.width * 0.7,
                       child: Text(
                         'Education Dono For Poor Child',
                         style: TextStyle(
@@ -143,9 +143,9 @@ class _DetailsPageState extends State<DetailsPage> {
                 SizedBox(
                   height: size.height * 0.02,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: [
                     Row(
                       children: [
                         Container(
@@ -167,7 +167,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Target amount',
+                              'Total amount',
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Color(0xFF209FA6).withOpacity(0.5),
@@ -186,51 +186,51 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: size.width * 0.08,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          height: size.height * 0.055,
-                          width: size.width * 0.11,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Color(0xFF209FA6),
-                          ),
-                          child: Icon(
-                            Icons.gps_fixed,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          width: size.width * 0.03,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Raised',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF209FA6).withOpacity(0.5),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '\$530.65',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF1B2441),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                    // SizedBox(
+                    //   width: size.width * 0.08,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Container(
+                    //       height: size.height * 0.055,
+                    //       width: size.width * 0.11,
+                    //       decoration: BoxDecoration(
+                    //         borderRadius: BorderRadius.circular(15),
+                    //         color: Color(0xFF209FA6),
+                    //       ),
+                    //       child: Icon(
+                    //         Icons.gps_fixed,
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       width: size.width * 0.03,
+                    //     ),
+                    //     Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Text(
+                    //           'Raised',
+                    //           style: TextStyle(
+                    //             fontSize: 18,
+                    //             color: Color(0xFF209FA6).withOpacity(0.5),
+                    //             fontWeight: FontWeight.bold,
+                    //           ),
+                    //         ),
+                    //         Text(
+                    //           '\$530.65',
+                    //           style: TextStyle(
+                    //             fontSize: 18,
+                    //             color: Color(0xFF1B2441),
+                    //             fontWeight: FontWeight.bold,
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
+                //   ],
+                // ),
                 SizedBox(
                   height: size.height * 0.02,
                 ),
@@ -324,288 +324,288 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                Container(
-                  height: size.height * 0.06,
-                  width: size.width,
-                  margin: EdgeInsets.symmetric(horizontal: size.width * 0.06),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(size.width * 0.1),
-                                topRight: Radius.circular(size.width * 0.1))),
-                        builder: (context) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: size.width * 0.05),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'How Much You Want To Donate?',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Color(0xFF1B2441),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: size.height * 0.02,
-                                ),
-                                Container(
-                                    height: size.height * 0.06,
-                                    width: size.width * 0.8,
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.06),
-                                    child: TextFormField(
-                                      readOnly: true,
-                                      enableInteractiveSelection: true,
-                                      onTap: () {
-                                        setState(() {
-                                          money.text = '50';
-                                        });
-                                      },
-                                      textAlign: TextAlign.center,
-                                      decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                size.width * 0.03),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey.shade300)),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                size.width * 0.03),
-                                            borderSide:
-                                                BorderSide(color: Colors.blue)),
-                                        hintText: "\$50",
-                                        hintStyle: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xFF1B2441),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    )),
-                                SizedBox(
-                                  height: size.height * 0.02,
-                                ),
-                                Container(
-                                    height: size.height * 0.06,
-                                    width: size.width * 0.8,
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.06),
-                                    child: TextFormField(
-                                      readOnly: true,
-                                      enableInteractiveSelection: true,
-                                      onTap: () {
-                                        setState(() {
-                                          money.text = '100';
-                                        });
-                                      },
-                                      textAlign: TextAlign.center,
-                                      decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                size.width * 0.03),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey.shade300)),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                size.width * 0.03),
-                                            borderSide:
-                                                BorderSide(color: Colors.blue)),
-                                        hintText: "\$100",
-                                        hintStyle: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xFF1B2441),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    )),
-                                SizedBox(
-                                  height: size.height * 0.02,
-                                ),
-                                Container(
-                                    height: size.height * 0.06,
-                                    width: size.width * 0.8,
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.06),
-                                    child: TextFormField(
-                                      readOnly: true,
-                                      enableInteractiveSelection: true,
-                                      onTap: () {
-                                        setState(() {
-                                          money.text = '200';
-                                        });
-                                      },
-                                      textAlign: TextAlign.center,
-                                      decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                size.width * 0.03),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey.shade300)),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                size.width * 0.03),
-                                            borderSide:
-                                                BorderSide(color: Colors.blue)),
-                                        hintText: "\$200",
-                                        hintStyle: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xFF1B2441),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    )),
-                                SizedBox(
-                                  height: size.height * 0.02,
-                                ),
-                                Container(
-                                    height: size.height * 0.06,
-                                    width: size.width * 0.8,
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.06),
-                                    child: TextFormField(
-                                      readOnly: true,
-                                      enableInteractiveSelection: true,
-                                      onTap: () {
-                                        setState(() {
-                                          money.text = '500';
-                                        });
-                                      },
-                                      textAlign: TextAlign.center,
-                                      decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                size.width * 0.03),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey.shade300)),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                size.width * 0.03),
-                                            borderSide:
-                                                BorderSide(color: Colors.blue)),
-                                        hintText: "\$500",
-                                        hintStyle: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xFF1B2441),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    )),
-                                SizedBox(
-                                  height: size.height * 0.02,
-                                ),
-                                Text(
-                                  'Or',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF209FA6).withOpacity(0.5),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: size.height * 0.02,
-                                ),
-                                Container(
-                                    height: size.height * 0.06,
-                                    width: size.width * 0.8,
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.06),
-                                    child: TextFormField(
-                                      controller: money,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Color(0xFF1B2441),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      decoration: InputDecoration(
-                                          enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      size.width * 0.03),
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey)),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      size.width * 0.03),
-                                              borderSide: BorderSide(
-                                                  color: Colors.blue)),
-                                          hintText: "Enter Here",
-                                          hintStyle: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700,
-                                              color: Color(0xFF209FA6)
-                                                  .withOpacity(0.4))),
-                                    )),
-                                SizedBox(
-                                  height: size.height * 0.02,
-                                ),
-                                Container(
-                                  height: size.height * 0.06,
-                                  width: size.width * 0.8,
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: size.width * 0.06),
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => PaymentPage(
-                                                    money: money.text,
-                                                  )));
-                                    },
-                                    child: Text(
-                                      'Donate',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 18,
-                                        color: Colors.white.withOpacity(0.8),
-                                      ),
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Color(0xFF209FA6),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                size.width * 0.04))),
-                                  ),
-                                ),
-                                Padding(
-                                    padding: EdgeInsets.only(
-                                  bottom:
-                                      MediaQuery.of(context).viewInsets.bottom,
-                                )),
-                              ],
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    child: Text(
-                      'Donate',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18,
-                        color: Colors.white.withOpacity(0.8),
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF209FA6),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20))),
-                  ),
-                ),
+                // SizedBox(
+                //   height: size.height * 0.02,
+                // ),
+                // Container(
+                //   height: size.height * 0.06,
+                //   width: size.width,
+                //   margin: EdgeInsets.symmetric(horizontal: size.width * 0.06),
+                //   child: ElevatedButton(
+                //     onPressed: () {
+                //       showModalBottomSheet(
+                //         context: context,
+                //         isScrollControlled: true,
+                //         backgroundColor: Colors.white,
+                //         shape: RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.only(
+                //                 topLeft: Radius.circular(size.width * 0.1),
+                //                 topRight: Radius.circular(size.width * 0.1))),
+                //         builder: (context) {
+                //           return Padding(
+                //             padding: EdgeInsets.symmetric(
+                //                 vertical: size.width * 0.05),
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.center,
+                //               mainAxisSize: MainAxisSize.min,
+                //               children: [
+                //                 Text(
+                //                   'How Much You Want To Donate?',
+                //                   style: TextStyle(
+                //                     fontSize: 20,
+                //                     color: Color(0xFF1B2441),
+                //                     fontWeight: FontWeight.bold,
+                //                   ),
+                //                 ),
+                //                 SizedBox(
+                //                   height: size.height * 0.02,
+                //                 ),
+                //                 Container(
+                //                     height: size.height * 0.06,
+                //                     width: size.width * 0.8,
+                //                     margin: EdgeInsets.symmetric(
+                //                         horizontal: size.width * 0.06),
+                //                     child: TextFormField(
+                //                       readOnly: true,
+                //                       enableInteractiveSelection: true,
+                //                       onTap: () {
+                //                         setState(() {
+                //                           money.text = '50';
+                //                         });
+                //                       },
+                //                       textAlign: TextAlign.center,
+                //                       decoration: InputDecoration(
+                //                         enabledBorder: OutlineInputBorder(
+                //                             borderRadius: BorderRadius.circular(
+                //                                 size.width * 0.03),
+                //                             borderSide: BorderSide(
+                //                                 color: Colors.grey.shade300)),
+                //                         focusedBorder: OutlineInputBorder(
+                //                             borderRadius: BorderRadius.circular(
+                //                                 size.width * 0.03),
+                //                             borderSide:
+                //                                 BorderSide(color: Colors.blue)),
+                //                         hintText: "\$50",
+                //                         hintStyle: TextStyle(
+                //                           fontSize: 18,
+                //                           color: Color(0xFF1B2441),
+                //                           fontWeight: FontWeight.bold,
+                //                         ),
+                //                       ),
+                //                     )),
+                //                 SizedBox(
+                //                   height: size.height * 0.02,
+                //                 ),
+                //                 Container(
+                //                     height: size.height * 0.06,
+                //                     width: size.width * 0.8,
+                //                     margin: EdgeInsets.symmetric(
+                //                         horizontal: size.width * 0.06),
+                //                     child: TextFormField(
+                //                       readOnly: true,
+                //                       enableInteractiveSelection: true,
+                //                       onTap: () {
+                //                         setState(() {
+                //                           money.text = '100';
+                //                         });
+                //                       },
+                //                       textAlign: TextAlign.center,
+                //                       decoration: InputDecoration(
+                //                         enabledBorder: OutlineInputBorder(
+                //                             borderRadius: BorderRadius.circular(
+                //                                 size.width * 0.03),
+                //                             borderSide: BorderSide(
+                //                                 color: Colors.grey.shade300)),
+                //                         focusedBorder: OutlineInputBorder(
+                //                             borderRadius: BorderRadius.circular(
+                //                                 size.width * 0.03),
+                //                             borderSide:
+                //                                 BorderSide(color: Colors.blue)),
+                //                         hintText: "\$100",
+                //                         hintStyle: TextStyle(
+                //                           fontSize: 18,
+                //                           color: Color(0xFF1B2441),
+                //                           fontWeight: FontWeight.bold,
+                //                         ),
+                //                       ),
+                //                     )),
+                //                 SizedBox(
+                //                   height: size.height * 0.02,
+                //                 ),
+                //                 Container(
+                //                     height: size.height * 0.06,
+                //                     width: size.width * 0.8,
+                //                     margin: EdgeInsets.symmetric(
+                //                         horizontal: size.width * 0.06),
+                //                     child: TextFormField(
+                //                       readOnly: true,
+                //                       enableInteractiveSelection: true,
+                //                       onTap: () {
+                //                         setState(() {
+                //                           money.text = '200';
+                //                         });
+                //                       },
+                //                       textAlign: TextAlign.center,
+                //                       decoration: InputDecoration(
+                //                         enabledBorder: OutlineInputBorder(
+                //                             borderRadius: BorderRadius.circular(
+                //                                 size.width * 0.03),
+                //                             borderSide: BorderSide(
+                //                                 color: Colors.grey.shade300)),
+                //                         focusedBorder: OutlineInputBorder(
+                //                             borderRadius: BorderRadius.circular(
+                //                                 size.width * 0.03),
+                //                             borderSide:
+                //                                 BorderSide(color: Colors.blue)),
+                //                         hintText: "\$200",
+                //                         hintStyle: TextStyle(
+                //                           fontSize: 18,
+                //                           color: Color(0xFF1B2441),
+                //                           fontWeight: FontWeight.bold,
+                //                         ),
+                //                       ),
+                //                     )),
+                //                 SizedBox(
+                //                   height: size.height * 0.02,
+                //                 ),
+                //                 Container(
+                //                     height: size.height * 0.06,
+                //                     width: size.width * 0.8,
+                //                     margin: EdgeInsets.symmetric(
+                //                         horizontal: size.width * 0.06),
+                //                     child: TextFormField(
+                //                       readOnly: true,
+                //                       enableInteractiveSelection: true,
+                //                       onTap: () {
+                //                         setState(() {
+                //                           money.text = '500';
+                //                         });
+                //                       },
+                //                       textAlign: TextAlign.center,
+                //                       decoration: InputDecoration(
+                //                         enabledBorder: OutlineInputBorder(
+                //                             borderRadius: BorderRadius.circular(
+                //                                 size.width * 0.03),
+                //                             borderSide: BorderSide(
+                //                                 color: Colors.grey.shade300)),
+                //                         focusedBorder: OutlineInputBorder(
+                //                             borderRadius: BorderRadius.circular(
+                //                                 size.width * 0.03),
+                //                             borderSide:
+                //                                 BorderSide(color: Colors.blue)),
+                //                         hintText: "\$500",
+                //                         hintStyle: TextStyle(
+                //                           fontSize: 18,
+                //                           color: Color(0xFF1B2441),
+                //                           fontWeight: FontWeight.bold,
+                //                         ),
+                //                       ),
+                //                     )),
+                //                 SizedBox(
+                //                   height: size.height * 0.02,
+                //                 ),
+                //                 Text(
+                //                   'Or',
+                //                   style: TextStyle(
+                //                     fontSize: 18,
+                //                     fontWeight: FontWeight.bold,
+                //                     color: Color(0xFF209FA6).withOpacity(0.5),
+                //                   ),
+                //                 ),
+                //                 SizedBox(
+                //                   height: size.height * 0.02,
+                //                 ),
+                //                 Container(
+                //                     height: size.height * 0.06,
+                //                     width: size.width * 0.8,
+                //                     margin: EdgeInsets.symmetric(
+                //                         horizontal: size.width * 0.06),
+                //                     child: TextFormField(
+                //                       controller: money,
+                //                       textAlign: TextAlign.center,
+                //                       style: TextStyle(
+                //                         fontSize: 18,
+                //                         color: Color(0xFF1B2441),
+                //                         fontWeight: FontWeight.bold,
+                //                       ),
+                //                       decoration: InputDecoration(
+                //                           enabledBorder: OutlineInputBorder(
+                //                               borderRadius:
+                //                                   BorderRadius.circular(
+                //                                       size.width * 0.03),
+                //                               borderSide: BorderSide(
+                //                                   color: Colors.grey)),
+                //                           focusedBorder: OutlineInputBorder(
+                //                               borderRadius:
+                //                                   BorderRadius.circular(
+                //                                       size.width * 0.03),
+                //                               borderSide: BorderSide(
+                //                                   color: Colors.blue)),
+                //                           hintText: "Enter Here",
+                //                           hintStyle: TextStyle(
+                //                               fontSize: 18,
+                //                               fontWeight: FontWeight.w700,
+                //                               color: Color(0xFF209FA6)
+                //                                   .withOpacity(0.4))),
+                //                     )),
+                //                 SizedBox(
+                //                   height: size.height * 0.02,
+                //                 ),
+                //                 Container(
+                //                   height: size.height * 0.06,
+                //                   width: size.width * 0.8,
+                //                   margin: EdgeInsets.symmetric(
+                //                       horizontal: size.width * 0.06),
+                //                   child: ElevatedButton(
+                //                     onPressed: () {
+                //                       Navigator.pop(context);
+                //                       Navigator.push(
+                //                           context,
+                //                           MaterialPageRoute(
+                //                               builder: (context) => PaymentPage(
+                //                                     money: money.text,
+                //                                   )));
+                //                     },
+                //                     child: Text(
+                //                       'Donate',
+                //                       style: TextStyle(
+                //                         fontWeight: FontWeight.w700,
+                //                         fontSize: 18,
+                //                         color: Colors.white.withOpacity(0.8),
+                //                       ),
+                //                     ),
+                //                     style: ElevatedButton.styleFrom(
+                //                         primary: Color(0xFF209FA6),
+                //                         shape: RoundedRectangleBorder(
+                //                             borderRadius: BorderRadius.circular(
+                //                                 size.width * 0.04))),
+                //                   ),
+                //                 ),
+                //                 Padding(
+                //                     padding: EdgeInsets.only(
+                //                   bottom:
+                //                       MediaQuery.of(context).viewInsets.bottom,
+                //                 )),
+                //               ],
+                //             ),
+                //           );
+                //         },
+                //       );
+                //     },
+                //     child: Text(
+                //       'Donate',
+                //       style: TextStyle(
+                //         fontWeight: FontWeight.w700,
+                //         fontSize: 18,
+                //         color: Colors.white.withOpacity(0.8),
+                //       ),
+                //     ),
+                //     style: ElevatedButton.styleFrom(
+                //         primary: Color(0xFF209FA6),
+                //         shape: RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.circular(20))),
+                //   ),
+                // ),
               ],
             ),
           ),

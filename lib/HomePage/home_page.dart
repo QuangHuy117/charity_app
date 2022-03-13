@@ -273,6 +273,7 @@ class _HomePageState extends State<HomePage> {
                   color: Color(0xFF209FA6),
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Start Your',
@@ -300,29 +301,29 @@ class _HomePageState extends State<HomePage> {
                             fontFamily: 'Fredoka',
                             fontSize: size.width * 0.035,
                             fontWeight: FontWeight.w700)),
-                    SizedBox(
-                      height: size.width * 0.03,
-                    ),
-                    Container(
-                      height: size.height * 0.05,
-                      width: size.width * 0.25,
-                      child: TextButton(
-                          style: TextButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                      size.width * 0.03))),
-                          onPressed: () {},
-                          child: Text(
-                            "Start Now",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Fredoka',
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF209FA6),
-                            ),
-                          )),
-                    ),
+                    // SizedBox(
+                    //   height: size.width * 0.03,
+                    // ),
+                    // Container(
+                    //   height: size.height * 0.05,
+                    //   width: size.width * 0.25,
+                    //   child: TextButton(
+                    //       style: TextButton.styleFrom(
+                    //           backgroundColor: Colors.white,
+                    //           shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(
+                    //                   size.width * 0.03))),
+                    //       onPressed: () {},
+                    //       child: Text(
+                    //         "Start Now",
+                    //         style: TextStyle(
+                    //           fontSize: 15,
+                    //           fontFamily: 'Fredoka',
+                    //           fontWeight: FontWeight.w700,
+                    //           color: Color(0xFF209FA6),
+                    //         ),
+                    //       )),
+                    // ),
                   ],
                 ),
               ),
@@ -530,32 +531,32 @@ class _HomePageState extends State<HomePage> {
                                 SizedBox(
                                   height: size.height * 0.03,
                                 ),
-                                Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        '\$${listCharity[index].raisedMoney} Raised',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontFamily: 'Fredoka',
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF209FA6),
-                                        ),
-                                      ),
-                                      Text(
-                                        'Target - \$' +
-                                            format.format(
-                                                listCharity[index].targetMoney),
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'Fredoka',
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF1B2441)
-                                              .withOpacity(0.7),
-                                        ),
-                                      ),
-                                    ]),
+                                // Row(
+                                //     mainAxisAlignment:
+                                //         MainAxisAlignment.spaceBetween,
+                                //     children: [
+                                // Text(
+                                //   '\$${listCharity[index].raisedMoney} Raised',
+                                //   style: TextStyle(
+                                //     fontSize: 20,
+                                //     fontFamily: 'Fredoka',
+                                //     fontWeight: FontWeight.bold,
+                                //     color: Color(0xFF209FA6),
+                                //   ),
+                                // ),
+                                Text(
+                                  'Total Amount - \$' +
+                                      format.format(
+                                          listCharity[index].targetMoney),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Fredoka',
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF209FA6),
+                                  ),
+                                ),
+                                // ]
+                                // ),
                               ],
                             ),
                           ),
@@ -589,7 +590,9 @@ class _HomePageState extends State<HomePage> {
         break;
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PaymentMethodPage(num: 0,),
+          builder: (context) => PaymentMethodPage(
+            num: 0,
+          ),
         ));
         break;
     }
