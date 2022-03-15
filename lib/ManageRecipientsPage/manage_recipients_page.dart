@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_final_fields, prefer_const_literals_to_create_immutables
 
+import 'package:charity_app/ManageRecipientsPage/create_recipient_page.dart';
 import 'package:charity_app/ManageRecipientsPage/recipient_detail_page.dart';
 import 'package:charity_app/models/recipient.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +17,90 @@ class _ManageRecipientsPageState extends State<ManageRecipientsPage> {
   TextEditingController address = TextEditingController();
 
   List<Recipient> _listRecipients = [
-    Recipient('Raphaelle Veum', '7471 Darrel Circles Suite 302 Schmittborough'),
-    Recipient('Shyann Veum', '1658 Alexandro Fork Suite 966 Hackettmouth'),
-    Recipient('Jonathon Bergnaum', '62624 Leffler Port Suite 242 Boehmport'),
-    Recipient('Avery Johnston', '67551 Emmerich Canyon West Darenland'),
-    Recipient('Brice Zulauf', '918 Keeling Lights South Cynthia'),
-    Recipient('Benedict Beahan', '1296 Leanna Islands Apt. 385 New Eulalia'),
+    Recipient(
+        'Raphaelle Veum',
+        '7471 Darrel Circles Suite 302 Schmittborough',
+        'Female',
+        '411722484',
+        '423-794-4316',
+        10000,
+        22,
+        'September',
+        2000,
+        '28 Jan 2021'),
+    Recipient(
+        'Sandra G Wells',
+        '1658 Alexandro Fork Suite 966 Hackettmouth',
+        'Female',
+        '594670830',
+        '904-910-7748',
+        10000,
+        22,
+        'September',
+        2000,
+        '28 Jan 2021'),
+    Recipient(
+        'Jonathon Bergnaum',
+        '62624 Leffler Port Suite 242 Boehmport',
+        'Male',
+        '528112398',
+        '801-619-7121',
+        15000,
+        13,
+        'November',
+        1995,
+        '21 Dec 2020'),
+    Recipient('Avery Johnston', '67551 Emmerich Canyon West Darenland', 'Male',
+        '633529159', '817-996-6431', 12000, 2, 'February', 1972, '18 Oct 2021'),
+    Recipient('Brice Zulauf', '918 Keeling Lights South Cynthia', 'Male',
+        '310566483', '812-316-7353', 8000, 5, 'October', 1981, '12 Aug 2020'),
+    Recipient(
+        'Benedict Beahan',
+        '1296 Leanna Islands Apt. 385 New Eulalia',
+        'Female',
+        '621010578',
+        '951-566-4872',
+        5000,
+        28,
+        'March',
+        1998,
+        '25 Nov 2021'),
   ];
+
+  Future updateRecipient(BuildContext context, int index) async {
+    final result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => RecipientDetailPage(
+                  recipient: _listRecipients[index],
+                )));
+    setState(() {
+      if (result == null) {
+        return;
+      } else {
+        setState(() {
+          _listRecipients[index] = result;
+        });
+      }
+    });
+  }
+
+  Future addNewRecipient(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CreateRecipientPage()),
+    );
+    setState(() {
+      print(result);
+      if (result == null) {
+        return;
+      } else {
+        setState(() {
+          _listRecipients.add(result);
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,11 +196,7 @@ class _ManageRecipientsPageState extends State<ManageRecipientsPage> {
                       width: size.width,
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      RecipientDetailPage()));
+                          updateRecipient(context, index);
                         },
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -134,7 +208,8 @@ class _ManageRecipientsPageState extends State<ManageRecipientsPage> {
                                 borderRadius:
                                     BorderRadius.circular(size.width * 0.07),
                                 child: Image(
-                                  image: AssetImage('assets/images/avatar1.jpg'),
+                                  image:
+                                      AssetImage('assets/images/avatar1.jpg'),
                                   height: size.height * 0.1,
                                   width: size.width * 0.2,
                                   fit: BoxFit.cover,
@@ -190,126 +265,7 @@ class _ManageRecipientsPageState extends State<ManageRecipientsPage> {
                 margin: EdgeInsets.symmetric(horizontal: size.width * 0.06),
                 child: ElevatedButton(
                   onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(size.width * 0.1),
-                              topRight: Radius.circular(size.width * 0.1))),
-                      builder: (context) {
-                        return Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: size.width * 0.05),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Add new recipient',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Color(0xFF1B2441),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(
-                                height: size.height * 0.02,
-                              ),
-                              Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: size.width * 0.1),
-                                  child: TextFormField(
-                                    controller: name,
-                                    textAlign: TextAlign.center,
-                                    decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey.shade300)),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey.shade300)),
-                                        hintText: "Full Name",
-                                        hintStyle: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            color: Color(0xFF209FA6)
-                                                .withOpacity(0.4))),
-                                  )),
-                              SizedBox(
-                                height: size.height * 0.02,
-                              ),
-                              Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: size.width * 0.1),
-                                  child: TextFormField(
-                                    controller: address,
-                                    minLines: 2,
-                                    maxLines: null,
-                                    keyboardType: TextInputType.multiline,
-                                    // textInputAction: TextInputAction.done,
-                                    textAlign: TextAlign.center,
-                                    decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey.shade300)),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey.shade300)),
-                                        hintText: "Address",
-                                        hintStyle: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            color: Color(0xFF209FA6)
-                                                .withOpacity(0.4))),
-                                  )),
-                              SizedBox(
-                                height: size.height * 0.02,
-                              ),
-                              Container(
-                                height: size.height * 0.06,
-                                width: size.width * 0.8,
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: size.width * 0.06),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    _listRecipients.add(Recipient(name.text, address.text));
-                                    name.clear();
-                                    address.clear();
-                                  },
-                                  child: Text(
-                                    'Save',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 18,
-                                      color: Colors.white.withOpacity(0.8),
-                                    ),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                      primary: Color(0xFF209FA6),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              size.width * 0.04))),
-                                ),
-                              ),
-                              Padding(
-                                  padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom,
-                              )),
-                            ],
-                          ),
-                        );
-                      },
-                    );
+                    addNewRecipient(context);
                   },
                   child: Text(
                     ' Create New',
@@ -333,81 +289,115 @@ class _ManageRecipientsPageState extends State<ManageRecipientsPage> {
     );
   }
 
-  createDialog(BuildContext context, double height, double width) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return StatefulBuilder(builder: (context, setState) {
-            return AlertDialog(
-              title: Text('Add more recipient!'),
-              content: SizedBox(
-                height: height,
-                width: width,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: name,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade300)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade300)),
-                          hintText: "Full Name",
-                          hintStyle: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF209FA6).withOpacity(0.4))),
-                    ),
-                    SizedBox(
-                      height: height * 0.05,
-                    ),
-                    TextFormField(
-                      controller: address,
-                      minLines: 2,
-                      maxLines: null,
-                      keyboardType: TextInputType.multiline,
-                      textInputAction: TextInputAction.done,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade300)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade300)),
-                          hintText: "Address",
-                          hintStyle: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF209FA6).withOpacity(0.4))),
-                    ),
-                    SizedBox(
-                      height: height * 0.05,
-                    ),
-                    SizedBox(
-                      height: height * 0.2,
-                      width: width * 0.4,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(
-                              context, Recipient(name.text, address.text));
-                        },
-                        child: Text('Save'),
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF209FA6),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          });
-        });
-  }
+  // createBottomSheet(BuildContext context, double height, double width) {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     isScrollControlled: true,
+  //     backgroundColor: Colors.white,
+  //     shape: RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.only(
+  //             topLeft: Radius.circular(width * 0.1),
+  //             topRight: Radius.circular(width * 0.1))),
+  //     builder: (context) {
+  //       return Padding(
+  //         padding: EdgeInsets.symmetric(vertical: width * 0.05),
+  //         child: Column(
+  //           crossAxisAlignment: CrossAxisAlignment.center,
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             Text(
+  //               'Add new recipient',
+  //               style: TextStyle(
+  //                 fontSize: 20,
+  //                 color: Color(0xFF1B2441),
+  //                 fontWeight: FontWeight.bold,
+  //               ),
+  //             ),
+  //             SizedBox(
+  //               height: height * 0.02,
+  //             ),
+  //             Container(
+  //                 margin: EdgeInsets.symmetric(horizontal: width * 0.1),
+  //                 child: TextFormField(
+  //                   controller: name,
+  //                   textAlign: TextAlign.center,
+  //                   decoration: InputDecoration(
+  //                       enabledBorder: OutlineInputBorder(
+  //                           borderRadius: BorderRadius.circular(20),
+  //                           borderSide:
+  //                               BorderSide(color: Colors.grey.shade300)),
+  //                       focusedBorder: OutlineInputBorder(
+  //                           borderRadius: BorderRadius.circular(20),
+  //                           borderSide:
+  //                               BorderSide(color: Colors.grey.shade300)),
+  //                       hintText: "Full Name",
+  //                       hintStyle: TextStyle(
+  //                           fontWeight: FontWeight.w700,
+  //                           color: Color(0xFF209FA6).withOpacity(0.4))),
+  //                 )),
+  //             SizedBox(
+  //               height: height * 0.02,
+  //             ),
+  //             Container(
+  //                 margin: EdgeInsets.symmetric(horizontal: width * 0.1),
+  //                 child: TextFormField(
+  //                   controller: address,
+  //                   minLines: 2,
+  //                   maxLines: null,
+  //                   keyboardType: TextInputType.multiline,
+  //                   // textInputAction: TextInputAction.done,
+  //                   textAlign: TextAlign.center,
+  //                   decoration: InputDecoration(
+  //                       enabledBorder: OutlineInputBorder(
+  //                           borderRadius: BorderRadius.circular(20),
+  //                           borderSide:
+  //                               BorderSide(color: Colors.grey.shade300)),
+  //                       focusedBorder: OutlineInputBorder(
+  //                           borderRadius: BorderRadius.circular(20),
+  //                           borderSide:
+  //                               BorderSide(color: Colors.grey.shade300)),
+  //                       hintText: "Address",
+  //                       hintStyle: TextStyle(
+  //                           fontWeight: FontWeight.w700,
+  //                           color: Color(0xFF209FA6).withOpacity(0.4))),
+  //                 )),
+  //             SizedBox(
+  //               height: height * 0.02,
+  //             ),
+  //             Container(
+  //               height: height * 0.06,
+  //               width: width * 0.8,
+  //               margin: EdgeInsets.symmetric(horizontal: width * 0.06),
+  //               child: ElevatedButton(
+  //                 onPressed: () {
+
+  //                   Navigator.pop(context);
+  //                   // _listRecipients.add(Recipient(name.text, address.text));
+  //                   // name.clear();
+  //                   // address.clear();
+  //                 },
+  //                 child: Text(
+  //                   'Save',
+  //                   style: TextStyle(
+  //                     fontWeight: FontWeight.w700,
+  //                     fontSize: 18,
+  //                     color: Colors.white.withOpacity(0.8),
+  //                   ),
+  //                 ),
+  //                 style: ElevatedButton.styleFrom(
+  //                     primary: Color(0xFF209FA6),
+  //                     shape: RoundedRectangleBorder(
+  //                         borderRadius: BorderRadius.circular(width * 0.04))),
+  //               ),
+  //             ),
+  //             Padding(
+  //                 padding: EdgeInsets.only(
+  //               bottom: MediaQuery.of(context).viewInsets.bottom,
+  //             )),
+  //           ],
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 }

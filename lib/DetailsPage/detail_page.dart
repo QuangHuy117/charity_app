@@ -1,18 +1,20 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
-import 'package:charity_app/PaymentPage/payment_page.dart';
+import 'package:charity_app/models/charity.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
 
 class DetailsPage extends StatefulWidget {
-  const DetailsPage({Key? key}) : super(key: key);
+  final Charity charity;
+  const DetailsPage({Key? key, required this.charity}) : super(key: key);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  TextEditingController money = TextEditingController();
+  var format = NumberFormat('#,###,000');
   bool joinStatus = true;
 
   @override
@@ -29,7 +31,7 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
         child: SingleChildScrollView(
           child: Container(
-            height: size.height,
+            height: size.height * 0.95,
             width: size.width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +71,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(size.width * 0.07),
                       child: Image(
-                        image: AssetImage('assets/images/africa1.jpg'),
+                        image: AssetImage(widget.charity.image),
                         fit: BoxFit.cover,
                         height: size.height * 0.35,
                         width: size.width * 0.43,
@@ -78,7 +80,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(size.width * 0.07),
                       child: Image(
-                        image: AssetImage('assets/images/africa2.jpg'),
+                        image: AssetImage(widget.charity.image2),
                         fit: BoxFit.cover,
                         height: size.height * 0.35,
                         width: size.width * 0.43,
@@ -90,7 +92,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   height: size.height * 0.02,
                 ),
                 Text(
-                  'Education',
+                  widget.charity.topic,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -104,9 +106,9 @@ class _DetailsPageState extends State<DetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: size.width * 0.7,
+                      width: size.width,
                       child: Text(
-                        'Education Dono For Poor Child',
+                        widget.charity.title,
                         style: TextStyle(
                           fontSize: 28,
                           color: Color(0xFF1B2441),
@@ -117,26 +119,13 @@ class _DetailsPageState extends State<DetailsPage> {
                     SizedBox(
                       height: size.height * 0.01,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '20 Days Left',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF1B2441).withOpacity(0.5),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          '40 people have joined',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF1B2441).withOpacity(0.5),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      widget.charity.startDate + " - " + widget.charity.endDate,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color(0xFF1B2441).withOpacity(0.5),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -146,6 +135,9 @@ class _DetailsPageState extends State<DetailsPage> {
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.start,
                 //   children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                     Row(
                       children: [
                         Container(
@@ -167,7 +159,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Total amount',
+                              'Money Raised',
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Color(0xFF209FA6).withOpacity(0.5),
@@ -175,7 +167,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                             ),
                             Text(
-                              '\$10,000',
+                              '\$' + format.format(widget.charity.targetMoney),
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Color(0xFF1B2441),
@@ -186,49 +178,60 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                       ],
                     ),
-                    // SizedBox(
-                    //   width: size.width * 0.08,
-                    // ),
-                    // Row(
-                    //   children: [
-                    //     Container(
-                    //       height: size.height * 0.055,
-                    //       width: size.width * 0.11,
-                    //       decoration: BoxDecoration(
-                    //         borderRadius: BorderRadius.circular(15),
-                    //         color: Color(0xFF209FA6),
-                    //       ),
-                    //       child: Icon(
-                    //         Icons.gps_fixed,
-                    //         color: Colors.white,
-                    //       ),
-                    //     ),
-                    //     SizedBox(
-                    //       width: size.width * 0.03,
-                    //     ),
-                    //     Column(
-                    //       crossAxisAlignment: CrossAxisAlignment.start,
-                    //       children: [
-                    //         Text(
-                    //           'Raised',
-                    //           style: TextStyle(
-                    //             fontSize: 18,
-                    //             color: Color(0xFF209FA6).withOpacity(0.5),
-                    //             fontWeight: FontWeight.bold,
-                    //           ),
-                    //         ),
-                    //         Text(
-                    //           '\$530.65',
-                    //           style: TextStyle(
-                    //             fontSize: 18,
-                    //             color: Color(0xFF1B2441),
-                    //             fontWeight: FontWeight.bold,
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ],
-                    // ),
+                    Text(
+                      widget.charity.peopleJoin.toString() +
+                          ' people have joined',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color(0xFF1B2441).withOpacity(0.5),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                // SizedBox(
+                //   width: size.width * 0.08,
+                // ),
+                // Row(
+                //   children: [
+                //     Container(
+                //       height: size.height * 0.055,
+                //       width: size.width * 0.11,
+                //       decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(15),
+                //         color: Color(0xFF209FA6),
+                //       ),
+                //       child: Icon(
+                //         Icons.gps_fixed,
+                //         color: Colors.white,
+                //       ),
+                //     ),
+                //     SizedBox(
+                //       width: size.width * 0.03,
+                //     ),
+                //     Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Raised',
+                //           style: TextStyle(
+                //             fontSize: 18,
+                //             color: Color(0xFF209FA6).withOpacity(0.5),
+                //             fontWeight: FontWeight.bold,
+                //           ),
+                //         ),
+                //         Text(
+                //           '\$530.65',
+                //           style: TextStyle(
+                //             fontSize: 18,
+                //             color: Color(0xFF1B2441),
+                //             fontWeight: FontWeight.bold,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ],
+                // ),
                 //   ],
                 // ),
                 SizedBox(
@@ -240,7 +243,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     Row(
                       children: [
                         Image(
-                          image: AssetImage('assets/images/ncapa_logo.png'),
+                          image: AssetImage(widget.charity.imageLogo),
                           fit: BoxFit.contain,
                           height: size.height * 0.07,
                           width: size.width * 0.09,
@@ -260,7 +263,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           width: size.width * 0.01,
                         ),
                         Text(
-                          'NCAPA',
+                          widget.charity.organization,
                           style: TextStyle(
                             fontSize: 20,
                             color: Color(0xFF209FA6),
@@ -303,7 +306,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 SizedBox(
                   child: ReadMoreText(
-                    "The mission of this donation is to cultivate highly trained and capable Palestinian graduates with a proficiency in conversational English that will lead to their successful participation in the labor. After the crisis, the long-term effects on the well-being of children are still a concern. We're providing clothing, food, shelter, and ensuring children, especially girls, return to school.",
+                    widget.charity.description,
                     trimLines: 4,
                     textAlign: TextAlign.start,
                     trimMode: TrimMode.Line,

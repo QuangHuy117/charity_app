@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:charity_app/ManageRecipientsPage/manage_recipients_page.dart';
 import 'package:charity_app/models/location.dart';
 import 'package:flutter/material.dart';
 
 class CompleteLocationPage extends StatelessWidget {
-  const CompleteLocationPage({ Key? key }) : super(key: key);
+  const CompleteLocationPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,42 +48,84 @@ class CompleteLocationPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('Destination : ' + _listLocation[index].location, 
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.bold,
-                              ),),
+                              Text(
+                                'Destination : ' +
+                                    _listLocation[index].location,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                              Text('Date : ' + _listLocation[index].date, 
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xFF209FA6).withOpacity(0.5),
-                              ),),
+                              Text(
+                                'Date : ' + _listLocation[index].date,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      const Color(0xFF209FA6).withOpacity(0.5),
+                                ),
+                              ),
                               SizedBox(
                                 height: size.height * 0.02,
                               ),
-                              Text('Number of recipients : ' + _listLocation[index].numPeople.toString(), 
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xFF209FA6).withOpacity(0.5),
-                              ),),
+                              Text(
+                                'Number of recipients : ' +
+                                    _listLocation[index].numPeople.toString(),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      const Color(0xFF209FA6).withOpacity(0.5),
+                                ),
+                              ),
                               SizedBox(
                                 height: size.height * 0.03,
                               ),
-                              Text('Status : ' + _listLocation[index].status, 
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xFF209FA6).withOpacity(0.8),
-                              ),),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Status : ' + _listLocation[index].status,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xFF209FA6)
+                                          .withOpacity(0.8),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.045,
+                                    width: size.width * 0.38,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ManageRecipientsPage()));
+                                      },
+                                      child: Text(
+                                        'Manage Recipients',
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Color(0xFF209FA6),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      size.width * 0.01))),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ))));

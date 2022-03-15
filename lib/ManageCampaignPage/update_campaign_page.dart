@@ -1,71 +1,63 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_null_comparison
+// ignore_for_file: prefer_const_constructors
 
 import 'dart:io';
 
-// import 'package:charity_app/HomePage/home_page.dart';
 import 'package:charity_app/models/charity.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class CreateNewFundPage extends StatefulWidget {
-  const CreateNewFundPage({Key? key}) : super(key: key);
+class UpdateCampaignPage extends StatefulWidget {
+  final Charity charity;
+  const UpdateCampaignPage({Key? key, required this.charity}) : super(key: key);
 
   @override
-  State<CreateNewFundPage> createState() => _CreateNewFundPageState();
+  State<UpdateCampaignPage> createState() => _UpdateCampaignPageState();
 }
 
-class _CreateNewFundPageState extends State<CreateNewFundPage> {
+class _UpdateCampaignPageState extends State<UpdateCampaignPage> {
   TextEditingController title = TextEditingController();
   TextEditingController startDate = TextEditingController();
   TextEditingController endDate = TextEditingController();
-  TextEditingController organization = TextEditingController();
   TextEditingController money = TextEditingController();
   TextEditingController description = TextEditingController();
+  String? imageName;
+  String? defaultImage;
 
-  Charity? charity;
-  var format = DateFormat('dd/MM/yyyy');
-  List<Widget> listWidget = [];
-  String? _dropDownValue;
-  File? image;
-  File? imageLogo;
-  String? imageString;
-  String? imageLogoString;
+  Future selectFile() async {
+    // if (num == 1) {
+    final result = await FilePicker.platform.pickFiles();
 
-  Future selectFile(int num) async {
-    if (num == 1) {
-      final result = await FilePicker.platform.pickFiles();
-
-      if (result == null) return;
-      final path = result.files.single.path;
-      imageString = path!.split('/').last;
-
-      setState(() => image = File(path));
-      if (image == null) return;
-    } else {
-      final result = await FilePicker.platform.pickFiles();
-
-      if (result == null) return;
-      final path = result.files.single.path;
-      imageLogoString = path!.split('/').last;
-
-      setState(() => imageLogo = File(path));
-      if (imageLogo == null) return;
-    }
+    if (result == null) return;
+    final path = result.files.single.path;
+    String filename = path!.split('/').last;
+    imageName = 'assets/images/' + filename;
+    
+    setState(() {
+      widget.charity.image = imageName!;
+      // image = File(path);
+    });
+    if (widget.charity.image.isEmpty) return;
   }
 
   @override
   void initState() {
-    startDate.text = format.format(DateTime.now());
-    endDate.text = format.format(DateTime.now().add(Duration(days: 1)));
+    defaultImage = widget.charity.image;
+    title.text = widget.charity.title;
+    startDate.text = widget.charity.startDate;
+    endDate.text = widget.charity.endDate;
+    money.text = widget.charity.targetMoney.toString();
+    description.text = widget.charity.description;
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
+    title.dispose();
     startDate.dispose();
     endDate.dispose();
+    money.dispose();
+    description.dispose();
   }
 
   @override
@@ -85,6 +77,7 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
             children: [
               GestureDetector(
                 onTap: () {
+                  widget.charity.image = defaultImage!;
                   Navigator.pop(context);
                 },
                 child: Text(
@@ -100,7 +93,7 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                 height: size.height * 0.025,
               ),
               Text(
-                'Create Campaign',
+                'Update Campaign',
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
@@ -111,7 +104,7 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                 height: size.height * 0.01,
               ),
               SizedBox(
-                height: size.height,
+                height: size.height * 0.85,
                 width: size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,9 +114,9 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                           EdgeInsets.symmetric(vertical: size.height * 0.02),
                       child: GestureDetector(
                         onTap: () {
-                          selectFile(1);
+                          selectFile();
                         },
-                        child: image == null
+                        child: widget.charity.image.isEmpty
                             ? Container(
                                 alignment: Alignment.center,
                                 child: Icon(
@@ -135,7 +128,7 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                                 borderRadius:
                                     BorderRadius.circular(size.width * 0.07),
                                 child: Image(
-                                  image: FileImage(image!),
+                                  image: AssetImage(widget.charity.image),
                                   fit: BoxFit.cover,
                                   height: size.height * 0.18,
                                   width: size.width,
@@ -146,13 +139,15 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                     SizedBox(
                       height: size.height * 0.02,
                     ),
-                    SizedBox(
-                        height: size.height * 0.07,
+                    Container(
+                        margin: EdgeInsets.only(bottom: size.width * 0.05),
                         child: TextFormField(
+                          // controller: title = TextEditingController()..text = widget.charity.title,
                           controller: title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color(0xFF209FA6),
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                           decoration: InputDecoration(
@@ -166,19 +161,20 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                                       BorderRadius.circular(size.width * 0.04),
                                   borderSide:
                                       BorderSide(color: Colors.grey.shade300)),
-                              hintText: "Campaign Name",
-                              hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xFF209FA6).withOpacity(0.4))),
+                              // hintText: "Fund Name",
+                              // hintStyle: TextStyle(
+                              //     fontWeight: FontWeight.w700,
+                              //     color: Color(0xFF209FA6).withOpacity(0.4))
+                                  ),
                         )),
                     SizedBox(
-                      height: size.height * 0.02,
+                      height: size.height * 0.01,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                          height: size.height * 0.07,
+                          height: size.height * 0.1,
                           width: size.width * 0.45,
                           child: TextFormField(
                             controller: startDate,
@@ -205,7 +201,7 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                           ),
                         ),
                         SizedBox(
-                          height: size.height * 0.07,
+                          height: size.height * 0.1,
                           width: size.width * 0.45,
                           child: TextFormField(
                             controller: endDate,
@@ -233,84 +229,8 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: size.height * 0.06,
-                          width: size.width * 0.45,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.grey.shade400, width: 1),
-                              borderRadius:
-                                  BorderRadius.circular(size.width * 0.04)),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.02),
-                            child: DropdownButton<String>(
-                              underline: SizedBox(),
-                              icon: Icon(Icons.arrow_drop_down),
-                              iconSize: 35,
-                              hint: Text('Choose topic'),
-                              isExpanded: true,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              value: _dropDownValue,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  _dropDownValue = newValue;
-                                });
-                              },
-                              items: ['Medical', 'Education', 'Pandemic']
-                                  .map((valueItem) {
-                                return DropdownMenuItem(
-                                  value: valueItem,
-                                  child: Text(valueItem),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.07,
-                          width: size.width * 0.45,
-                          child: TextFormField(
-                            controller: organization,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFF209FA6),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.04),
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.shade300)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.04),
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.shade300)),
-                                hintText: "Organization",
-                                hintStyle: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xFF209FA6).withOpacity(0.4))),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    SizedBox(
-                        height: size.height * 0.07,
+                    Container(
+                        margin: EdgeInsets.only(bottom: size.width * 0.05),
                         child: TextFormField(
                           controller: money,
                           textAlign: TextAlign.center,
@@ -381,29 +301,26 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                     //   endIndent: size.width * 0.6,
                     //   thickness: 1,
                     // ),
-                    SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    GestureDetector(
-                        onTap: () {
-                          selectFile(2);
-                        },
-                        child: imageLogoString == null
-                            ? Container(
-                                height: size.height * 0.06,
-                                width: size.width * 0.12,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.grey,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Icon(
-                                  Icons.add,
-                                  size: 30,
-                                ),
-                              )
-                            : Text(imageLogoString ?? '')),
+                    // GestureDetector(
+                    //     onTap: () {
+                    //       selectFile(2);
+                    //     },
+                    //     child: fileName == null
+                    //         ? Container(
+                    //             height: size.height * 0.06,
+                    //             width: size.width * 0.12,
+                    //             decoration: BoxDecoration(
+                    //               border: Border.all(
+                    //                 color: Colors.grey,
+                    //                 width: 1,
+                    //               ),
+                    //             ),
+                    //             child: Icon(
+                    //               Icons.add,
+                    //               size: 30,
+                    //             ),
+                    //           )
+                    //         : Text(fileName ?? '')),
                     // SizedBox(
                     //   height: size.height * 0.01,
                     // ),
@@ -426,7 +343,7 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                     //   ],
                     // ),
                     SizedBox(
-                      height: size.height * 0.03,
+                      height: size.height * 0.05,
                     ),
                     Container(
                       height: size.height * 0.065,
@@ -439,24 +356,17 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                           //     context,
                           //     MaterialPageRoute(
                           //         builder: (context) => HomePage()));
-                          charity = Charity(
-                            title: title.text, 
-                            topic: _dropDownValue!, 
-                            organization: organization.text, 
-                            description: description.text, 
-                            image: 'assets/images/' + imageString!, 
-                            image2: 'assets/images/africa1.jpg', 
-                            imageLogo: 'assets/images/' + imageLogoString!, 
-                            startDate: startDate.text, 
-                            endDate: endDate.text, 
-                            status: 'In Progress', 
-                            peopleJoin: 0, 
-                            targetMoney: int.parse(money.text)
-                            );
-                          Navigator.pop(context, charity);
+                          setState(() {
+                            widget.charity.title = title.text;
+                            widget.charity.startDate = startDate.text;
+                            widget.charity.endDate = endDate.text;
+                            widget.charity.targetMoney = int.parse(money.text);
+                            widget.charity.description = description.text;
+                          });
+                          Navigator.pop(context, widget.charity);
                         },
                         child: Text(
-                          ' Publish Now',
+                          'Update',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,

@@ -2,8 +2,7 @@
 
 import 'package:charity_app/CreateNewFundPage/create_new_fund_page.dart';
 import 'package:charity_app/DetailsPage/detail_page.dart';
-import 'package:charity_app/PaymentMethodPage/payment_method_page.dart';
-import 'package:charity_app/ProfilePage/profile_page.dart';
+import 'package:charity_app/ManageCampaignPage/profile_page.dart';
 import 'package:charity_app/icons/my_flutter_app_icons.dart';
 import 'package:charity_app/models/charity.dart';
 import 'package:flutter/material.dart';
@@ -22,30 +21,77 @@ class _HomePageState extends State<HomePage> {
 
   List<Charity> listCharity = [
     Charity(
-      id: 'CH1',
+      // id: 'CH1',
       title: 'Education Dono For Poor Child',
       topic: 'Education',
       organization: 'NCAPA',
       description:
-          'The mission of this donation is to cultivate highly trained and capable Palestinian graduates with a proficiency in conversational English that will lead to their successful participation in the labor.',
+          "The mission of this donation is to cultivate highly trained and capable Palestinian graduates with a proficiency in conversational English that will lead to their successful participation in the labor. After the crisis, the long-term effects on the well-being of children are still a concern. We're providing clothing, food, shelter, and ensuring children, especially girls, return to school.",
       image: 'assets/images/africa1.jpg',
-      dateLeft: 20,
+      image2: 'assets/images/africa2.jpg',
+      imageLogo: 'assets/images/ncapa_logo.png',
+      // dateLeft: 20,
+      startDate: '14/02/2022',
+      endDate: '30/04/2022',
+      status: 'In Progress',
+      peopleJoin: 45,
       targetMoney: 10000,
-      raisedMoney: 530.65,
+      // raisedMoney: 530.65,
     ),
     Charity(
-      id: 'CH2',
+      // id: 'CH2',
       title: 'Ebola Disease in Africa',
       topic: 'Pandemic',
       organization: 'WHO',
       description:
           "After the crisis, the long-term effects on the well-being of children are still a concern. We're providing clothing, food, shelter, and ensuring children, especially girls, return to school.",
       image: 'assets/images/africa2.jpg',
-      dateLeft: 20,
+      image2: 'assets/images/africa3.jpg',
+      imageLogo: 'assets/images/WHO_logo.jpg',
+      // dateLeft: 20,
+      startDate: '28/02/2022',
+      endDate: '01/05/2022',
+      status: 'In Progress',
+      peopleJoin: 35,
       targetMoney: 100000,
-      raisedMoney: 12400.85,
+      // raisedMoney: 12400.85,
+    ),
+    Charity(
+      // id: 'CH3',
+      title: 'People were devastated by floods',
+      topic: 'Pandemic',
+      organization: 'GFDRR',
+      description:
+          'The mission of this donation is to cultivate highly trained and capable Palestinian graduates with a proficiency in conversational English that will lead to their successful participation in the labor. helping flood victims get back to their lives as quickly as possible after the disaster has passed.',
+      image: 'assets/images/flood1.jpg',
+      image2: 'assets/images/flood2.jpg',
+      imageLogo: 'assets/images/GFDRR_logo.png',
+      // dateLeft: 20,
+      startDate: '14/02/2022',
+      endDate: '30/04/2022',
+      status: 'In Progress',
+      peopleJoin: 60,
+      targetMoney: 1000000,
+      // raisedMoney: 530.65,
     ),
   ];
+
+  Future addNewCampaign(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CreateNewFundPage()),
+    );
+    setState(() {
+      if (result == null) {
+        return;
+      } else {
+        setState(() {
+          listCharity.add(result);
+        });
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -96,29 +142,29 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: size.height * 0.02,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    selectedItem(context, 0);
-                  },
-                  child: ListTile(
-                    title: Text('Create Fund',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white70,
-                        )),
-                    trailing: Icon(
-                      Icons.arrow_right,
-                      size: 30,
-                      color: Colors.white70,
-                    ),
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     selectedItem(context, 0);
+                //   },
+                //   child: ListTile(
+                //     title: Text('Create Fund',
+                //         style: TextStyle(
+                //           fontSize: 16,
+                //           color: Colors.white70,
+                //         )),
+                //     trailing: Icon(
+                //       Icons.arrow_right,
+                //       size: 30,
+                //       color: Colors.white70,
+                //     ),
+                //   ),
+                // ),
                 GestureDetector(
                   onTap: () {
                     selectedItem(context, 1);
                   },
                   child: ListTile(
-                    title: Text('Profile',
+                    title: Text('Manage Campaign',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.white70,
@@ -130,23 +176,23 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    // selectedItem(context, 0);
-                  },
-                  child: ListTile(
-                    title: Text('Settings',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white70,
-                        )),
-                    trailing: Icon(
-                      Icons.arrow_right,
-                      size: 30,
-                      color: Colors.white70,
-                    ),
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     // selectedItem(context, 0);
+                //   },
+                //   child: ListTile(
+                //     title: Text('Settings',
+                //         style: TextStyle(
+                //           fontSize: 16,
+                //           color: Colors.white70,
+                //         )),
+                //     trailing: Icon(
+                //       Icons.arrow_right,
+                //       size: 30,
+                //       color: Colors.white70,
+                //     ),
+                //   ),
+                // ),
                 GestureDetector(
                   onTap: () {
                     // selectedItem(context, 0);
@@ -164,23 +210,23 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    selectedItem(context, 2);
-                  },
-                  child: ListTile(
-                    title: Text('Payment',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white70,
-                        )),
-                    trailing: Icon(
-                      Icons.arrow_right,
-                      size: 30,
-                      color: Colors.white70,
-                    ),
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     selectedItem(context, 2);
+                //   },
+                //   child: ListTile(
+                //     title: Text('Payment',
+                //         style: TextStyle(
+                //           fontSize: 16,
+                //           color: Colors.white70,
+                //         )),
+                //     trailing: Icon(
+                //       Icons.arrow_right,
+                //       size: 30,
+                //       color: Colors.white70,
+                //     ),
+                //   ),
+                // ),
                 SizedBox(
                   height: size.height * 0.02,
                 ),
@@ -213,7 +259,7 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
-          height: size.height,
+          height: size.height * 0.95,
           width: size.width,
           margin: EdgeInsets.only(
               top: size.height * 0.03,
@@ -286,20 +332,11 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                       height: size.width * 0.01,
                     ),
-                    Text('Own Funding',
+                    Text('Own Campaign',
                         style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Fredoka',
                             fontSize: size.width * 0.05,
-                            fontWeight: FontWeight.w700)),
-                    SizedBox(
-                      height: size.width * 0.01,
-                    ),
-                    Text('Crate Your Own Dono Post',
-                        style: TextStyle(
-                            color: Colors.white30,
-                            fontFamily: 'Fredoka',
-                            fontSize: size.width * 0.035,
                             fontWeight: FontWeight.w700)),
                     // SizedBox(
                     //   height: size.width * 0.03,
@@ -465,107 +502,162 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: size.height * 0.02,
               ),
-              Container(
-                height: size.height * 0.47,
-                width: size.width,
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: size.height * 0.35,
-                      margin: EdgeInsets.only(bottom: size.width * 0.04),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DetailsPage()));
-                        },
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                                color: Colors.grey.shade300, width: 1),
-                            borderRadius:
-                                BorderRadius.circular(size.width * 0.08),
-                          ),
-                          elevation: 0,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.04,
-                                vertical: size.width * 0.04),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.circular(size.width * 0.07),
-                                  child: Image.asset(
-                                    '${listCharity[index].image}',
-                                    fit: BoxFit.cover,
-                                    height: size.height * 0.15,
-                                    width: size.width,
-                                  ),
+              Stack(
+                children: [
+                  Container(
+                    height: size.height * 0.47,
+                    width: size.width,
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Container(
+                          height: size.height * 0.4,
+                          margin: EdgeInsets.only(bottom: size.width * 0.04),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetailsPage(charity: listCharity[index],)));
+                            },
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                    color: Colors.grey.shade300, width: 1),
+                                borderRadius:
+                                    BorderRadius.circular(size.width * 0.05),
+                              ),
+                              elevation: 0,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.04,
+                                    vertical: size.width * 0.04),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                          size.width * 0.07),
+                                      child: Image.asset(
+                                        '${listCharity[index].image}',
+                                        fit: BoxFit.cover,
+                                        height: size.height * 0.15,
+                                        width: size.width,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.025,
+                                    ),
+                                    Text(
+                                      '${listCharity[index].title}',
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        color: Color(0xFF1B2441),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.01,
+                                    ),
+                                    Text(
+                                      'By ${listCharity[index].organization}',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color:
+                                            Color(0xFF209FA6).withOpacity(0.7),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.01,
+                                    ),
+                                    Text(
+                                      listCharity[index].startDate +
+                                          ' - ' +
+                                          listCharity[index].endDate,
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                        color:
+                                            Color(0xFF209FA6).withOpacity(0.7),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.01,
+                                    ),
+                                    // Row(
+                                    //     mainAxisAlignment:
+                                    //         MainAxisAlignment.spaceBetween,
+                                    //     children: [
+                                    // Text(
+                                    //   '\$${listCharity[index].raisedMoney} Raised',
+                                    //   style: TextStyle(
+                                    //     fontSize: 20,
+                                    //     fontFamily: 'Fredoka',
+                                    //     fontWeight: FontWeight.bold,
+                                    //     color: Color(0xFF209FA6),
+                                    //   ),
+                                    // ),
+                                    Text(
+                                      'Money Raised - \$' +
+                                          format.format(
+                                              listCharity[index].targetMoney),
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF209FA6),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.01,
+                                    ),
+                                    Text(
+                                      'Status: ' +
+                                          listCharity[index].status,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF1B2441),
+                                      ),
+                                    ),
+                                    // ]
+                                    // ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  height: size.height * 0.025,
-                                ),
-                                Text(
-                                  '${listCharity[index].title}',
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    fontFamily: 'Fredoka',
-                                    color: Color(0xFF1B2441),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: size.height * 0.01,
-                                ),
-                                Text(
-                                  'By ${listCharity[index].organization}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Fredoka',
-                                    color: Color(0xFF209FA6).withOpacity(0.7),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: size.height * 0.03,
-                                ),
-                                // Row(
-                                //     mainAxisAlignment:
-                                //         MainAxisAlignment.spaceBetween,
-                                //     children: [
-                                // Text(
-                                //   '\$${listCharity[index].raisedMoney} Raised',
-                                //   style: TextStyle(
-                                //     fontSize: 20,
-                                //     fontFamily: 'Fredoka',
-                                //     fontWeight: FontWeight.bold,
-                                //     color: Color(0xFF209FA6),
-                                //   ),
-                                // ),
-                                Text(
-                                  'Total Amount - \$' +
-                                      format.format(
-                                          listCharity[index].targetMoney),
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontFamily: 'Fredoka',
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF209FA6),
-                                  ),
-                                ),
-                                // ]
-                                // ),
-                              ],
+                              ),
                             ),
                           ),
+                        );
+                      },
+                      itemCount: listCharity.length,
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: Container(
+                      height: size.height * 0.065,
+                      width: size.width * 0.8,
+                      margin:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.06),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          addNewCampaign(context);
+                        },
+                        child: Text(
+                          'Create New',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.white.withOpacity(0.8),
+                          ),
                         ),
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF209FA6),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(size.width * 0.04))),
                       ),
-                    );
-                  },
-                  itemCount: listCharity.length,
-                ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -578,23 +670,23 @@ class _HomePageState extends State<HomePage> {
     Navigator.pop(context);
 
     switch (index) {
-      case 0:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => CreateNewFundPage(),
-        ));
-        break;
+      // case 0:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => CreateNewFundPage(),
+      //   ));
+      //   break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ProfilePage(),
         ));
         break;
-      case 2:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PaymentMethodPage(
-            num: 0,
-          ),
-        ));
-        break;
+      // case 2:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => PaymentMethodPage(
+      //       num: 0,
+      //     ),
+      //   ));
+      //   break;
     }
   }
 }

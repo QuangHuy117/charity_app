@@ -1,24 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:io';
-
 import 'package:charity_app/icons/my_flutter_app_icons.dart';
 import 'package:charity_app/models/recipient.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class RecipientDetailPage extends StatefulWidget {
-  final Recipient recipient;
-  const RecipientDetailPage({Key? key, required this.recipient})
-      : super(key: key);
+class CreateRecipientPage extends StatefulWidget {
+  const CreateRecipientPage({Key? key}) : super(key: key);
 
   @override
-  State<RecipientDetailPage> createState() => _RecipientDetailPageState();
+  State<CreateRecipientPage> createState() => _CreateRecipientPageState();
 }
 
-class _RecipientDetailPageState extends State<RecipientDetailPage> {
+class _CreateRecipientPageState extends State<CreateRecipientPage> {
   Recipient? recipient;
-
+  var format = DateFormat('d '+'MMM '+'y');
   TextEditingController name = TextEditingController();
   TextEditingController address = TextEditingController();
   TextEditingController gender = TextEditingController();
@@ -28,46 +24,17 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
   TextEditingController date = TextEditingController();
   TextEditingController month = TextEditingController();
   TextEditingController year = TextEditingController();
-  File? image;
-  String? fileName;
-
+  TextEditingController joined = TextEditingController();
   @override
   void initState() {
-    name.text = widget.recipient.name;
-    address.text = widget.recipient.address;
-    gender.text = widget.recipient.gender;
-    idCard.text = widget.recipient.identityCard;
-    phone.text = widget.recipient.phone;
-    money.text = widget.recipient.money.toString();
-    date.text = widget.recipient.date.toString();
-    month.text = widget.recipient.month;
-    year.text = widget.recipient.year.toString();
+    joined.text = format.format(DateTime.now());
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    name.dispose();
-    address.dispose();
-    gender.dispose();
-    idCard.dispose();
-    phone.dispose();
-    money.dispose();
-    date.dispose();
-    month.dispose();
-    year.dispose();
-  }
-
-  Future selectFile() async {
-    final result = await FilePicker.platform.pickFiles();
-
-    if (result == null) return;
-    final path = result.files.single.path;
-    fileName = path!.split('/').last;
-
-    setState(() => image = File(path));
-    if (image == null) return;
+    joined.dispose();
   }
 
   @override
@@ -83,43 +50,31 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
             ),
             child: SingleChildScrollView(
                 child: SizedBox(
-              height: size.height,
+              height: size.height * 0.9,
               width: size.width,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            'Back',
-                            style: TextStyle(
-                              color: Color(0xFF209FA6),
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Back',
+                        style: TextStyle(
+                          color: Color(0xFF209FA6),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: size.width * 0.04,
-                          child: Icon(
-                            Icons.phone,
-                            size: 30,
-                            color: Color(0xFF209FA6),
-                          ),
-                        ),
-                      ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.02,
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Edit Recipient',
+                        'Create Recipient',
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -128,26 +83,8 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                       ),
                     ),
                     SizedBox(
-                      height: size.height * 0.01,
+                      height: size.height * 0.05,
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: CircleAvatar(
-                        radius: (size.width * 0.085),
-                        backgroundColor: Colors.red,
-                        child: ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(size.width * 0.085),
-                          child: Image(
-                            image: AssetImage('assets/images/avatar1.jpg'),
-                            height: size.height * 0.1,
-                            width: size.width * 0.2,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: size.height * 0.01),
                     Text(
                       'Full Name',
                       style: TextStyle(fontSize: 17, color: Colors.grey),
@@ -164,8 +101,13 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                           ),
                         ),
                         isDense: true,
+                        hintText: 'Ex: abcdef',
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey,
+                        ),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: size.width * 0.025),
+                            EdgeInsets.symmetric(vertical: size.width * 0.03),
                         prefixIconConstraints:
                             BoxConstraints(maxHeight: size.height * 0.03),
                         prefixIcon: Padding(
@@ -197,8 +139,13 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                           ),
                         ),
                         isDense: true,
+                        hintText: 'Ex: 1234 acbs',
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey,
+                        ),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: size.width * 0.025),
+                            EdgeInsets.symmetric(vertical: size.width * 0.03),
                         prefixIconConstraints:
                             BoxConstraints(maxHeight: size.height * 0.03),
                         prefixIcon: Padding(
@@ -230,8 +177,13 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                           ),
                         ),
                         isDense: true,
+                        hintText: 'Ex: Male',
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey,
+                        ),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: size.width * 0.025),
+                            EdgeInsets.symmetric(vertical: size.width * 0.03),
                         prefixIconConstraints:
                             BoxConstraints(maxHeight: size.height * 0.03),
                         prefixIcon: Padding(
@@ -263,8 +215,13 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                           ),
                         ),
                         isDense: true,
+                        hintText: 'Ex: 00000000000',
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey,
+                        ),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: size.width * 0.025),
+                            EdgeInsets.symmetric(vertical: size.width * 0.03),
                         prefixIconConstraints:
                             BoxConstraints(maxHeight: size.height * 0.03),
                         prefixIcon: Padding(
@@ -296,8 +253,13 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                           ),
                         ),
                         isDense: true,
+                        hintText: 'Ex: 000-000-0000',
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey,
+                        ),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: size.width * 0.025),
+                            EdgeInsets.symmetric(vertical: size.width * 0.03),
                         prefixIconConstraints:
                             BoxConstraints(maxHeight: size.height * 0.03),
                         prefixIcon: Padding(
@@ -329,8 +291,13 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                           ),
                         ),
                         isDense: true,
+                        hintText: 'Ex: 10000',
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey,
+                        ),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: size.width * 0.025),
+                            EdgeInsets.symmetric(vertical: size.width * 0.03),
                         prefixIconConstraints:
                             BoxConstraints(maxHeight: size.height * 0.03),
                         prefixIcon: Padding(
@@ -350,139 +317,82 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                       'Birth Date',
                       style: TextStyle(fontSize: 17, color: Colors.grey),
                     ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
                           width: size.width * 0.2,
                           child: TextFormField(
-                            textAlign: TextAlign.center,
                             controller: date,
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                            decoration: InputDecoration(
-                              isDense: true,
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.grey.shade300,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: size.width * 0.2,
-                          child: TextFormField(
                             textAlign: TextAlign.center,
-                            controller: month,
                             style: TextStyle(
                               fontSize: 18,
                             ),
                             decoration: InputDecoration(
-                              isDense: true,
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.grey.shade300,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: size.width * 0.2,
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            controller: year,
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                            decoration: InputDecoration(
-                              isDense: true,
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.grey.shade300,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: size.width * 0.03),
-                      child: Text(
-                        'Capture',
-                        style: TextStyle(fontSize: 17, color: Colors.grey),
-                      ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        selectFile();
-                      },
-                      child: Row(
-                        children: [
-                          Container(
-                            height: size.height * 0.06,
-                            width: size.width * 0.2,
-                            margin: EdgeInsets.only(right: size.width * 0.03),
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(size.width * 0.03),
-                              color: Color(0xFF209FA6),
-                              border: Border.all(
+                              hintText: 'Ex: 22',
+                              hintStyle: TextStyle(
+                                fontSize: 18,
                                 color: Colors.grey,
-                                width: 1,
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.grey.shade300,
+                                ),
                               ),
                             ),
-                            child: Icon(
-                              Icons.add,
-                              size: 28,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(
-                            width: size.width * 0.7,
-                            child: Text(
-                              fileName ?? '',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Joined ',
-                          style: TextStyle(
-                            color: Colors.grey.shade400,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
                           ),
                         ),
-                        Text(
-                          widget.recipient.joined,
-                          style: TextStyle(
-                            color: Color(0xFF209FA6).withOpacity(0.7),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                        SizedBox(
+                          width: size.width * 0.4,
+                          child: TextFormField(
+                            controller: month,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: 'Ex: September',
+                              hintStyle: TextStyle(
+                                fontSize: 18,
+                                color: Colors.grey,
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.grey.shade300,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: size.width * 0.2,
+                          child: TextFormField(
+                            controller: year,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: 'Ex: 2000',
+                              hintStyle: TextStyle(
+                                fontSize: 18,
+                                color: Colors.grey,
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.grey.shade300,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: size.height * 0.02,
+                      height: size.height * 0.08,
                     ),
                     Container(
                       height: size.height * 0.065,
@@ -491,25 +401,21 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                           EdgeInsets.symmetric(horizontal: size.width * 0.06),
                       child: ElevatedButton(
                         onPressed: () {
-                          // Navigator.pushReplacement(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => HomePage()));
                           recipient = Recipient(
-                              name.text,
-                              address.text,
-                              gender.text,
-                              idCard.text,
-                              phone.text,
-                              int.parse(money.text),
-                              int.parse(date.text),
-                              month.text,
-                              int.parse(year.text),
-                              widget.recipient.joined);
+                            name.text, 
+                            address.text, 
+                            gender.text, 
+                            idCard.text, 
+                            phone.text, 
+                            int.parse(money.text), 
+                            int.parse(date.text), 
+                            month.text, 
+                            int.parse(year.text), 
+                            joined.text);
                           Navigator.pop(context, recipient);
                         },
                         child: Text(
-                          ' Save Now',
+                          ' Create',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
