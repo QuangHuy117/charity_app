@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   List<Charity> listCharity = [
     Charity(
-      // id: 'CH1',
+      location: 'Ho Chi Minh City, VietNam',
       title: 'Education Dono For Poor Child',
       topic: 'Education',
       organization: 'NCAPA',
@@ -33,13 +33,13 @@ class _HomePageState extends State<HomePage> {
       // dateLeft: 20,
       startDate: '14/02/2022',
       endDate: '30/04/2022',
-      status: 'In Progress',
+      status: false,
       peopleJoin: 45,
       targetMoney: 10000,
       // raisedMoney: 530.65,
     ),
     Charity(
-      // id: 'CH2',
+      location: 'Ho Chi Minh City, VietNam',
       title: 'Ebola Disease in Africa',
       topic: 'Pandemic',
       organization: 'WHO',
@@ -51,13 +51,13 @@ class _HomePageState extends State<HomePage> {
       // dateLeft: 20,
       startDate: '28/02/2022',
       endDate: '01/05/2022',
-      status: 'In Progress',
+      status: true,
       peopleJoin: 35,
       targetMoney: 100000,
       // raisedMoney: 12400.85,
     ),
     Charity(
-      // id: 'CH3',
+      location: 'Ha Noi City, VietNam',
       title: 'People were devastated by floods',
       topic: 'Pandemic',
       organization: 'GFDRR',
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
       // dateLeft: 20,
       startDate: '14/02/2022',
       endDate: '30/04/2022',
-      status: 'In Progress',
+      status: true,
       peopleJoin: 60,
       targetMoney: 1000000,
       // raisedMoney: 530.65,
@@ -91,7 +91,6 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -308,62 +307,62 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               SizedBox(
-                height: size.height * 0.02,
+                height: size.height * 0.01,
               ),
-              Container(
-                height: size.height * 0.2,
-                width: size.width,
-                padding: EdgeInsets.all(size.width * 0.04),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(size.width * 0.08),
-                  color: Color(0xFF209FA6),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Start Your',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Fredoka',
-                          fontSize: size.width * 0.05,
-                          fontWeight: FontWeight.w700),
-                    ),
-                    SizedBox(
-                      height: size.width * 0.01,
-                    ),
-                    Text('Own Campaign',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Fredoka',
-                            fontSize: size.width * 0.05,
-                            fontWeight: FontWeight.w700)),
-                    // SizedBox(
-                    //   height: size.width * 0.03,
-                    // ),
-                    // Container(
-                    //   height: size.height * 0.05,
-                    //   width: size.width * 0.25,
-                    //   child: TextButton(
-                    //       style: TextButton.styleFrom(
-                    //           backgroundColor: Colors.white,
-                    //           shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(
-                    //                   size.width * 0.03))),
-                    //       onPressed: () {},
-                    //       child: Text(
-                    //         "Start Now",
-                    //         style: TextStyle(
-                    //           fontSize: 15,
-                    //           fontFamily: 'Fredoka',
-                    //           fontWeight: FontWeight.w700,
-                    //           color: Color(0xFF209FA6),
-                    //         ),
-                    //       )),
-                    // ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   height: size.height * 0.2,
+              //   width: size.width,
+              //   padding: EdgeInsets.all(size.width * 0.04),
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(size.width * 0.08),
+              //     color: Color(0xFF209FA6),
+              //   ),
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       Text(
+              //         'Start Your',
+              //         style: TextStyle(
+              //             color: Colors.white,
+              //             fontFamily: 'Fredoka',
+              //             fontSize: size.width * 0.05,
+              //             fontWeight: FontWeight.w700),
+              //       ),
+              //       SizedBox(
+              //         height: size.width * 0.01,
+              //       ),
+              //       Text('Own Campaign',
+              //           style: TextStyle(
+              //               color: Colors.white,
+              //               fontFamily: 'Fredoka',
+              //               fontSize: size.width * 0.05,
+              //               fontWeight: FontWeight.w700)),
+              // SizedBox(
+              //   height: size.width * 0.03,
+              // ),
+              // Container(
+              //   height: size.height * 0.05,
+              //   width: size.width * 0.25,
+              //   child: TextButton(
+              //       style: TextButton.styleFrom(
+              //           backgroundColor: Colors.white,
+              //           shape: RoundedRectangleBorder(
+              //               borderRadius: BorderRadius.circular(
+              //                   size.width * 0.03))),
+              //       onPressed: () {},
+              //       child: Text(
+              //         "Start Now",
+              //         style: TextStyle(
+              //           fontSize: 15,
+              //           fontFamily: 'Fredoka',
+              //           fontWeight: FontWeight.w700,
+              //           color: Color(0xFF209FA6),
+              //         ),
+              //       )),
+              // ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(
                 height: size.height * 0.03,
               ),
@@ -480,12 +479,12 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               SizedBox(
-                height: size.height * 0.03,
+                height: size.height * 0.02,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Popular',
+                  Text('Popular Campaign',
                       style: TextStyle(
                           fontSize: 25,
                           fontFamily: 'Fredoka',
@@ -500,24 +499,26 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               SizedBox(
-                height: size.height * 0.02,
+                height: size.height * 0.01,
               ),
               Stack(
                 children: [
                   Container(
-                    height: size.height * 0.47,
+                    height: size.height * 0.7,
                     width: size.width,
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         return Container(
-                          height: size.height * 0.4,
+                          height: size.height * 0.42,
                           margin: EdgeInsets.only(bottom: size.width * 0.04),
                           child: GestureDetector(
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => DetailsPage(charity: listCharity[index],)));
+                                      builder: (context) => DetailsPage(
+                                            charity: listCharity[index],
+                                          )));
                             },
                             child: Card(
                               shape: RoundedRectangleBorder(
@@ -545,7 +546,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: size.height * 0.025,
+                                      height: size.height * 0.02,
                                     ),
                                     Text(
                                       '${listCharity[index].title}',
@@ -558,28 +559,39 @@ class _HomePageState extends State<HomePage> {
                                     SizedBox(
                                       height: size.height * 0.01,
                                     ),
-                                    Text(
-                                      'By ${listCharity[index].organization}',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color:
-                                            Color(0xFF209FA6).withOpacity(0.7),
-                                      ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                          width: size.width * 0.33,
+                                          child: Text(
+                                            'By ${listCharity[index].organization}',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: Color(0xFF209FA6)
+                                                  .withOpacity(0.7),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          alignment: Alignment.centerRight,
+                                          width: size.width * 0.5,
+                                          child: Text(
+                                            listCharity[index].startDate +
+                                                ' - ' +
+                                                listCharity[index].endDate,
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xFF209FA6)
+                                                  .withOpacity(0.7),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: size.height * 0.01,
-                                    ),
-                                    Text(
-                                      listCharity[index].startDate +
-                                          ' - ' +
-                                          listCharity[index].endDate,
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                        color:
-                                            Color(0xFF209FA6).withOpacity(0.7),
-                                      ),
-                                    ),
+
                                     SizedBox(
                                       height: size.height * 0.01,
                                     ),
@@ -610,8 +622,20 @@ class _HomePageState extends State<HomePage> {
                                       height: size.height * 0.01,
                                     ),
                                     Text(
+                                      'Location - ' +
+                                          listCharity[index].location,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF209FA6),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.01,
+                                    ),
+                                    Text(
                                       'Status: ' +
-                                          listCharity[index].status,
+                                          '${listCharity[index].status ? 'In Progress' : 'Done'}',
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -631,7 +655,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Positioned(
-                    bottom: 0,
+                    bottom: size.width * 0.03,
                     child: Container(
                       height: size.height * 0.065,
                       width: size.width * 0.8,

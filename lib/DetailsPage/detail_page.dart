@@ -130,6 +130,25 @@ class _DetailsPageState extends State<DetailsPage> {
                   ],
                 ),
                 SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.place, size: 28, color: Color(0xFF1B2441).withOpacity(0.5),),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    Text(
+                      widget.charity.location,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color(0xFF1B2441).withOpacity(0.5),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
                   height: size.height * 0.02,
                 ),
                 // Row(

@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -58,18 +57,32 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: TextFormField(
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey.shade300)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey.shade300)),
-                              hintText: "Your Email",
-                              hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xFF209FA6).withOpacity(0.4))),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade300)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade300)),
+                            label: Padding(
+                              padding: EdgeInsets.only(left: size.width * 0.01),
+                              child: Text('Your Email'),
+                            ),
+                            // labelText: "Your Email",
+                            floatingLabelStyle: TextStyle(
+                              fontSize: 22,
+                            ),
+                            labelStyle: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFF209FA6).withOpacity(0.6)),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            // hintText: "Your Email",
+                            // hintStyle: TextStyle(
+                            //     fontWeight: FontWeight.w700,
+                            //     color: Color(0xFF209FA6).withOpacity(0.4))
+                          ),
                         )),
                     SizedBox(
                       height: size.height * 0.02,
@@ -84,9 +97,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: Text(
                           'Continue',
                           style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15,
-                          ),
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18,
+                              color: Colors.white.withOpacity(0.8)),
                         ),
                         style: ElevatedButton.styleFrom(
                             primary: Color(0xFF209FA6),
@@ -101,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       'or continue with',
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 15,
+                          fontSize: 16,
                           color: Color(0xFF209FA6).withOpacity(0.4)),
                     ),
                     SizedBox(
@@ -131,7 +144,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               'Sign in with Apple',
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 15,
+                                  fontSize: 16,
                                   color: Colors.black),
                             ),
                           ],
@@ -170,7 +183,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               'Sign in with Google',
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 15,
+                                  fontSize: 16,
                                   color: Colors.blue),
                             ),
                           ],
@@ -191,6 +204,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         Text(
                           'Have Account?',
                           style: TextStyle(
+                              fontSize: 16,
                               color: Color(0xFF209FA6).withOpacity(0.4),
                               fontWeight: FontWeight.w600),
                         ),
@@ -209,6 +223,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: Text(
                               'Log in',
                               style: TextStyle(
+                                  fontSize: 17,
                                   color: Color(0xFF209FA6),
                                   fontWeight: FontWeight.w700),
                             )),

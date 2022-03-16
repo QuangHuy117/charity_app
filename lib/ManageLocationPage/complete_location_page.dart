@@ -103,7 +103,7 @@ class CompleteLocationPage extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     height: size.height * 0.045,
-                                    width: size.width * 0.38,
+                                    width: size.width * 0.4,
                                     child: ElevatedButton(
                                       onPressed: () {
                                         Navigator.push(

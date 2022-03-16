@@ -59,18 +59,31 @@ class _SignInPageState extends State<SignInPage> {
                         child: TextFormField(
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey.shade300)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey.shade300)),
-                              hintText: "Your Email",
-                              hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xFF209FA6).withOpacity(0.4))),
+                            label: Padding(
+                              padding: EdgeInsets.only(left: size.width * 0.01),
+                              child: Text('Your Email'),
+                            ),
+                            floatingLabelStyle: TextStyle(
+                              fontSize: 22,
+                            ),
+                            labelStyle: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFF209FA6).withOpacity(0.6)),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade300)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade300)),
+                            // hintText: "Your Email",
+                            // hintStyle: TextStyle(
+                            //     fontWeight: FontWeight.w700,
+                            //     color: Color(0xFF209FA6).withOpacity(0.4))
+                          ),
                         )),
                     SizedBox(
                       height: size.height * 0.02,
@@ -80,19 +93,29 @@ class _SignInPageState extends State<SignInPage> {
                             EdgeInsets.symmetric(horizontal: size.width * 0.06),
                         child: TextFormField(
                           textAlign: TextAlign.center,
+                          obscureText: true,
                           decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey.shade300)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey.shade300)),
-                              hintText: "Enter Password",
-                              hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xFF209FA6).withOpacity(0.4))),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade300)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade300)),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            label: Padding(
+                              padding: EdgeInsets.only(left: size.width * 0.01),
+                              child: Text('Password'),
+                            ),
+                            floatingLabelStyle: TextStyle(
+                              fontSize: 22,
+                            ),
+                            labelStyle: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFF209FA6).withOpacity(0.6)),
+                          ),
                         )),
                     SizedBox(
                       height: size.height * 0.02,
@@ -103,15 +126,17 @@ class _SignInPageState extends State<SignInPage> {
                       margin:
                           EdgeInsets.symmetric(horizontal: size.width * 0.06),
                       child: ElevatedButton(
-                        onPressed: () {  
+                        onPressed: () {
                           Navigator.pushReplacement(
-                            context, MaterialPageRoute(builder: (context) => HomePage()));
-                            },
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()));
+                        },
                         child: Text(
                           'Continue',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
-                            fontSize: 15,
+                            fontSize: 18,
                             color: Colors.white.withOpacity(0.8),
                           ),
                         ),
@@ -122,17 +147,36 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     SizedBox(
-                      height: size.height * 0.03,
+                      height: size.height * 0.02,
+                    ),
+                    Text(
+                      'Forgot Password ?',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                          color: Color(0xFF209FA6).withOpacity(0.8)),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    Divider(
+                      height: 1,
+                      thickness: 2,
+                      endIndent: size.width * 0.15,
+                      indent: size.width * 0.15,
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
                     ),
                     Text(
                       'or continue with',
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 15,
+                          fontSize: 16,
                           color: Color(0xFF209FA6).withOpacity(0.4)),
                     ),
                     SizedBox(
-                      height: size.height * 0.03,
+                      height: size.height * 0.02,
                     ),
                     Container(
                       height: size.height * 0.06,
@@ -158,7 +202,7 @@ class _SignInPageState extends State<SignInPage> {
                               'Sign in with Apple',
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 15,
+                                  fontSize: 16,
                                   color: Colors.black),
                             ),
                           ],
@@ -197,7 +241,7 @@ class _SignInPageState extends State<SignInPage> {
                               'Sign in with Google',
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 15,
+                                  fontSize: 16,
                                   color: Colors.blue),
                             ),
                           ],
@@ -218,6 +262,7 @@ class _SignInPageState extends State<SignInPage> {
                         Text(
                           'New User?',
                           style: TextStyle(
+                              fontSize: 16,
                               color: Color(0xFF209FA6).withOpacity(0.4),
                               fontWeight: FontWeight.w600),
                         ),
@@ -235,6 +280,7 @@ class _SignInPageState extends State<SignInPage> {
                             child: Text(
                               'Create Account',
                               style: TextStyle(
+                                  fontSize: 17,
                                   color: Color(0xFF209FA6),
                                   fontWeight: FontWeight.w700),
                             )),

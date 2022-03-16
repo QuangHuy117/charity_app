@@ -1,7 +1,7 @@
 
 class Charity {
   Charity({
-    // required this.id,
+    required this.location,
     required this.title,
     required this.topic,
     required this.organization,
@@ -17,7 +17,7 @@ class Charity {
     // required this.raisedMoney,
   });
 
-  // String id;
+  String location;
   String title;
   String topic;
   String organization;
@@ -27,7 +27,7 @@ class Charity {
   String imageLogo;
   String startDate;
   String endDate;
-  String status;
+  bool status;
   int peopleJoin;
   int targetMoney;
   // double raisedMoney;

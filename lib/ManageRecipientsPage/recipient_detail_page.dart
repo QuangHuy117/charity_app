@@ -155,6 +155,8 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                     TextFormField(
                       controller: name,
                       style: TextStyle(
+                        color: Color(0xFF209FA6),
+                        fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
                       decoration: InputDecoration(
@@ -188,6 +190,8 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                     TextFormField(
                       controller: address,
                       style: TextStyle(
+                        color: Color(0xFF209FA6),
+                        fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
                       decoration: InputDecoration(
@@ -221,6 +225,8 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                     TextFormField(
                       controller: gender,
                       style: TextStyle(
+                        color: Color(0xFF209FA6),
+                        fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
                       decoration: InputDecoration(
@@ -254,6 +260,8 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                     TextFormField(
                       controller: idCard,
                       style: TextStyle(
+                        color: Color(0xFF209FA6),
+                        fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
                       decoration: InputDecoration(
@@ -287,6 +295,8 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                     TextFormField(
                       controller: phone,
                       style: TextStyle(
+                        color: Color(0xFF209FA6),
+                        fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
                       decoration: InputDecoration(
@@ -320,6 +330,8 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                     TextFormField(
                       controller: money,
                       style: TextStyle(
+                        color: Color(0xFF209FA6),
+                        fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
                       decoration: InputDecoration(
@@ -359,6 +371,8 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                             textAlign: TextAlign.center,
                             controller: date,
                             style: TextStyle(
+                              color: Color(0xFF209FA6),
+                              fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
                             decoration: InputDecoration(
@@ -377,6 +391,8 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                             textAlign: TextAlign.center,
                             controller: month,
                             style: TextStyle(
+                              color: Color(0xFF209FA6),
+                              fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
                             decoration: InputDecoration(
@@ -395,6 +411,8 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                             textAlign: TextAlign.center,
                             controller: year,
                             style: TextStyle(
+                              color: Color(0xFF209FA6),
+                              fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
                             decoration: InputDecoration(

@@ -21,6 +21,7 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
   TextEditingController endDate = TextEditingController();
   TextEditingController organization = TextEditingController();
   TextEditingController money = TextEditingController();
+  TextEditingController location = TextEditingController();
   TextEditingController description = TextEditingController();
 
   Charity? charity;
@@ -116,6 +117,13 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      'Campaign Image',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                      ),
+                    ),
                     Container(
                       margin:
                           EdgeInsets.symmetric(vertical: size.height * 0.02),
@@ -146,226 +154,381 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                     SizedBox(
                       height: size.height * 0.02,
                     ),
-                    SizedBox(
-                        height: size.height * 0.07,
-                        child: TextFormField(
-                          controller: title,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFF209FA6),
-                            fontWeight: FontWeight.bold,
-                          ),
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(size.width * 0.04),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey.shade300)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(size.width * 0.04),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey.shade300)),
-                              hintText: "Campaign Name",
-                              hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xFF209FA6).withOpacity(0.4))),
-                        )),
-                    SizedBox(
-                      height: size.height * 0.02,
+                    // SizedBox(
+                    //     height: size.height * 0.07,
+                    //     child: TextFormField(
+                    //       controller: title,
+                    //       textAlign: TextAlign.center,
+                    //       style: TextStyle(
+                    //         color: Color(0xFF209FA6),
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //       decoration: InputDecoration(
+                    //         floatingLabelBehavior: FloatingLabelBehavior.always,
+                    //         label: Padding(
+                    //           padding: EdgeInsets.only(left: size.width * 0.01),
+                    //           child: Text('Campaign Name'),
+                    //         ),
+                    //         floatingLabelStyle: TextStyle(
+                    //           fontSize: 20,
+                    //         ),
+                    //         labelStyle: TextStyle(
+                    //             fontSize: 20,
+                    //             fontWeight: FontWeight.w700,
+                    //             color: Colors.black.withOpacity(0.6)),
+                    //         enabledBorder: OutlineInputBorder(
+                    //             borderRadius:
+                    //                 BorderRadius.circular(size.width * 0.04),
+                    //             borderSide:
+                    //                 BorderSide(color: Colors.grey.shade300)),
+                    //         focusedBorder: OutlineInputBorder(
+                    //             borderRadius:
+                    //                 BorderRadius.circular(size.width * 0.04),
+                    //             borderSide:
+                    //                 BorderSide(color: Colors.grey.shade300)),
+                    //         // hintText: "Campaign Name",
+                    //         // hintStyle: TextStyle(
+                    //         //     fontWeight: FontWeight.w700,
+                    //         //     color: Color(0xFF209FA6).withOpacity(0.4))
+                    //       ),
+                    //     )),
+                    Text(
+                      'Campaign Name',
+                      style: TextStyle(fontSize: 17, color: Colors.grey),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          height: size.height * 0.07,
-                          width: size.width * 0.45,
-                          child: TextFormField(
-                            controller: startDate,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFF209FA6),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.04),
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.shade300)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.04),
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.shade300)),
-                                hintText: "Start Date",
-                                hintStyle: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xFF209FA6).withOpacity(0.4))),
+                    TextFormField(
+                      controller: title,
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
                           ),
                         ),
-                        SizedBox(
-                          height: size.height * 0.07,
-                          width: size.width * 0.45,
-                          child: TextFormField(
-                            controller: endDate,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFF209FA6),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.04),
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.shade300)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.04),
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.shade300)),
-                                hintText: "End Date",
-                                hintStyle: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xFF209FA6).withOpacity(0.4))),
-                          ),
-                        ),
-                      ],
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: size.width * 0.01,
+                            horizontal: size.width * 0.01),
+                      ),
                     ),
                     SizedBox(
                       height: size.height * 0.02,
                     ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     SizedBox(
+                    //       height: size.height * 0.07,
+                    //       width: size.width * 0.45,
+                    //       child: TextFormField(
+                    //         controller: startDate,
+                    //         textAlign: TextAlign.center,
+                    //         style: TextStyle(
+                    //           color: Color(0xFF209FA6),
+                    //           fontWeight: FontWeight.bold,
+                    //         ),
+                    //         decoration: InputDecoration(
+                    //           enabledBorder: OutlineInputBorder(
+                    //               borderRadius:
+                    //                   BorderRadius.circular(size.width * 0.04),
+                    //               borderSide:
+                    //                   BorderSide(color: Colors.grey.shade300)),
+                    //           focusedBorder: OutlineInputBorder(
+                    //               borderRadius:
+                    //                   BorderRadius.circular(size.width * 0.04),
+                    //               borderSide:
+                    //                   BorderSide(color: Colors.grey.shade300)),
+                    //           // hintText: "Start Date",
+                    //           // hintStyle: TextStyle(
+                    //           //     fontWeight: FontWeight.w700,
+                    //           //     color: Color(0xFF209FA6).withOpacity(0.4))
+                    //           floatingLabelBehavior:
+                    //               FloatingLabelBehavior.always,
+                    //           label: Padding(
+                    //             padding:
+                    //                 EdgeInsets.only(left: size.width * 0.01),
+                    //             child: Text('Start Date'),
+                    //           ),
+                    //           floatingLabelStyle: TextStyle(
+                    //             fontSize: 20,
+                    //           ),
+                    //           labelStyle: TextStyle(
+                    //               fontSize: 20,
+                    //               fontWeight: FontWeight.w700,
+                    //               color: Colors.black.withOpacity(0.6)),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       height: size.height * 0.07,
+                    //       width: size.width * 0.45,
+                    //       child: TextFormField(
+                    //         controller: endDate,
+                    //         textAlign: TextAlign.center,
+                    //         style: TextStyle(
+                    //           color: Color(0xFF209FA6),
+                    //           fontWeight: FontWeight.bold,
+                    //         ),
+                    //         decoration: InputDecoration(
+                    //           enabledBorder: OutlineInputBorder(
+                    //               borderRadius:
+                    //                   BorderRadius.circular(size.width * 0.04),
+                    //               borderSide:
+                    //                   BorderSide(color: Colors.grey.shade300)),
+                    //           focusedBorder: OutlineInputBorder(
+                    //               borderRadius:
+                    //                   BorderRadius.circular(size.width * 0.04),
+                    //               borderSide:
+                    //                   BorderSide(color: Colors.grey.shade300)),
+                    //           // hintText: "End Date",
+                    //           // hintStyle: TextStyle(
+                    //           //     fontWeight: FontWeight.w700,
+                    //           //     color: Color(0xFF209FA6).withOpacity(0.4))
+                    //           floatingLabelBehavior:
+                    //               FloatingLabelBehavior.always,
+                    //           label: Padding(
+                    //             padding:
+                    //                 EdgeInsets.only(left: size.width * 0.01),
+                    //             child: Text('End Date'),
+                    //           ),
+                    //           floatingLabelStyle: TextStyle(
+                    //             fontSize: 20,
+                    //           ),
+                    //           labelStyle: TextStyle(
+                    //               fontSize: 20,
+                    //               fontWeight: FontWeight.w700,
+                    //               color: Colors.black.withOpacity(0.6)),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: size.height * 0.06,
-                          width: size.width * 0.45,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.grey.shade400, width: 1),
-                              borderRadius:
-                                  BorderRadius.circular(size.width * 0.04)),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.02),
-                            child: DropdownButton<String>(
-                              underline: SizedBox(),
-                              icon: Icon(Icons.arrow_drop_down),
-                              iconSize: 35,
-                              hint: Text('Choose topic'),
-                              isExpanded: true,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Start Date',
+                                style:
+                                    TextStyle(fontSize: 17, color: Colors.grey),
                               ),
-                              value: _dropDownValue,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  _dropDownValue = newValue;
-                                });
-                              },
-                              items: ['Medical', 'Education', 'Pandemic']
-                                  .map((valueItem) {
-                                return DropdownMenuItem(
-                                  value: valueItem,
-                                  child: Text(valueItem),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.07,
-                          width: size.width * 0.45,
-                          child: TextFormField(
-                            controller: organization,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFF209FA6),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.04),
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.shade300)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.04),
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.shade300)),
-                                hintText: "Organization",
-                                hintStyle: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xFF209FA6).withOpacity(0.4))),
-                          ),
-                        ),
+                              SizedBox(
+                                width: size.width * 0.45,
+                                child: TextFormField(
+                                  controller: startDate,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.shade300,
+                                      ),
+                                    ),
+                                    isDense: true,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: size.width * 0.01,
+                                        horizontal: size.width * 0.01),
+                                  ),
+                                ),
+                              ),
+                            ]),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'End Date',
+                                style:
+                                    TextStyle(fontSize: 17, color: Colors.grey),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.45,
+                                child: TextFormField(
+                                  controller: endDate,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.shade300,
+                                      ),
+                                    ),
+                                    isDense: true,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: size.width * 0.01,
+                                        horizontal: size.width * 0.01),
+                                  ),
+                                ),
+                              ),
+                            ]),
                       ],
                     ),
                     SizedBox(
                       height: size.height * 0.02,
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Topic',
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.grey),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: size.width * 0.01),
+                              height: size.height * 0.06,
+                              width: size.width * 0.45,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.grey.shade400, width: 1),
+                                  borderRadius:
+                                      BorderRadius.circular(size.width * 0.04)),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.02),
+                                child: DropdownButton<String>(
+                                  underline: SizedBox(),
+                                  elevation: 1,
+                                  icon: Icon(Icons.arrow_drop_down),
+                                  iconSize: 35,
+                                  hint: Text('Choose topic'),
+                                  isExpanded: true,
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.6),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                  value: _dropDownValue,
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      _dropDownValue = newValue;
+                                    });
+                                  },
+                                  items: ['Medical', 'Education', 'Pandemic']
+                                      .map((valueItem) {
+                                    return DropdownMenuItem(
+                                      value: valueItem,
+                                      child: Text(valueItem),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Organization',
+                                style:
+                                    TextStyle(fontSize: 17, color: Colors.grey),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.45,
+                                child: TextFormField(
+                                  controller: organization,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.shade300,
+                                      ),
+                                    ),
+                                    isDense: true,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: size.width * 0.01,
+                                        horizontal: size.width * 0.01),
+                                  ),
+                                ),
+                              ),
+                            ]),
+                      ],
+                    ),
                     SizedBox(
-                        height: size.height * 0.07,
-                        child: TextFormField(
-                          controller: money,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFF209FA6),
-                            fontWeight: FontWeight.bold,
+                      height: size.height * 0.02,
+                    ),
+                    Text(
+                      'Money',
+                      style: TextStyle(fontSize: 17, color: Colors.grey),
+                    ),
+                    TextFormField(
+                      controller: money,
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
                           ),
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(size.width * 0.04),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey.shade300)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(size.width * 0.04),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey.shade300)),
-                              hintText: "Money Raised",
-                              hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xFF209FA6).withOpacity(0.4))),
-                        )),
+                        ),
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: size.width * 0.01,
+                            horizontal: size.width * 0.01),
+                      ),
+                    ),
                     SizedBox(
                       height: size.height * 0.01,
                     ),
-                    SizedBox(
-                      height: size.height * 0.18,
-                      width: size.width,
-                      child: TextFormField(
-                        controller: description,
-                        minLines: 6,
-                        maxLines: null,
-                        keyboardType: TextInputType.multiline,
-                        textInputAction: TextInputAction.done,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF209FA6),
-                          fontWeight: FontWeight.bold,
+                    Text(
+                      'Location',
+                      style: TextStyle(fontSize: 17, color: Colors.grey),
+                    ),
+                    TextFormField(
+                      controller: location,
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                          ),
                         ),
-                        decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(size.width * 0.04),
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade300)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(size.width * 0.04),
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade300)),
-                            hintText: "Description",
-                            hintStyle: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: Color(0xFF209FA6).withOpacity(0.4))),
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: size.width * 0.01,
+                            horizontal: size.width * 0.01),
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    Text(
+                      'Description',
+                      style: TextStyle(fontSize: 17, color: Colors.grey),
+                    ),
+                    TextFormField(
+                      controller: description,
+                      minLines: 3,
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline,
+                      textInputAction: TextInputAction.done,
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                          ),
+                        ),
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: size.width * 0.01,
+                            horizontal: size.width * 0.01),
                       ),
                     ),
                     // Text(
@@ -384,26 +547,26 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                     SizedBox(
                       height: size.height * 0.02,
                     ),
-                    GestureDetector(
-                        onTap: () {
-                          selectFile(2);
-                        },
-                        child: imageLogoString == null
-                            ? Container(
-                                height: size.height * 0.06,
-                                width: size.width * 0.12,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.grey,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Icon(
-                                  Icons.add,
-                                  size: 30,
-                                ),
-                              )
-                            : Text(imageLogoString ?? '')),
+                    // GestureDetector(
+                    //     onTap: () {
+                    //       selectFile(2);
+                    //     },
+                    //     child: imageLogoString == null
+                    //         ? Container(
+                    //             height: size.height * 0.06,
+                    //             width: size.width * 0.12,
+                    //             decoration: BoxDecoration(
+                    //               border: Border.all(
+                    //                 color: Colors.grey,
+                    //                 width: 1,
+                    //               ),
+                    //             ),
+                    //             child: Icon(
+                    //               Icons.add,
+                    //               size: 30,
+                    //             ),
+                    //           )
+                    //         : Text(imageLogoString ?? '')),
                     // SizedBox(
                     //   height: size.height * 0.01,
                     // ),
@@ -440,19 +603,19 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                           //     MaterialPageRoute(
                           //         builder: (context) => HomePage()));
                           charity = Charity(
-                            title: title.text, 
-                            topic: _dropDownValue!, 
-                            organization: organization.text, 
-                            description: description.text, 
-                            image: 'assets/images/' + imageString!, 
-                            image2: 'assets/images/africa1.jpg', 
-                            imageLogo: 'assets/images/' + imageLogoString!, 
-                            startDate: startDate.text, 
-                            endDate: endDate.text, 
-                            status: 'In Progress', 
-                            peopleJoin: 0, 
-                            targetMoney: int.parse(money.text)
-                            );
+                              location: location.text,
+                              title: title.text,
+                              topic: _dropDownValue!,
+                              organization: organization.text,
+                              description: description.text,
+                              image: 'assets/images/' + imageString!,
+                              image2: 'assets/images/africa1.jpg',
+                              imageLogo: 'assets/images/ncapa_logo.png',
+                              startDate: startDate.text,
+                              endDate: endDate.text,
+                              status: true,
+                              peopleJoin: 0,
+                              targetMoney: int.parse(money.text));
                           Navigator.pop(context, charity);
                         },
                         child: Text(

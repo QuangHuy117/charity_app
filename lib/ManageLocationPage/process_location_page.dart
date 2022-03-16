@@ -1,20 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:charity_app/ManageLocationPage/location_detail_page.dart';
 import 'package:charity_app/ManageRecipientsPage/manage_recipients_page.dart';
 import 'package:charity_app/models/location.dart';
 import 'package:flutter/material.dart';
 
 class ProcessLocationPage extends StatelessWidget {
-  const ProcessLocationPage({Key? key}) : super(key: key);
+  final List<Location> listLocation;
+  const ProcessLocationPage({Key? key, required this.listLocation}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Location> _listLocation = [
-      Location('TP Hồ Chí Minh', '10/03/2022', 100, 'Processing'),
-      Location('TP Hồ Chí Minh', '12/03/2022', 200, 'Pending'),
-      Location('TP Đà Nẵng', '10/03/2022', 150, 'Pending'),
-      Location('TP Hà Nội', '11/03/2022', 150, 'Processing'),
-    ];
 
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
@@ -28,11 +24,11 @@ class ProcessLocationPage extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: size.width * 0.04),
                 child: GestureDetector(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) =>
-                      //             ManageFundDetailPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  LocationDetailPage(location: listLocation[index])));
                     },
                     child: Card(
                         shape: RoundedRectangleBorder(
@@ -51,7 +47,7 @@ class ProcessLocationPage extends StatelessWidget {
                             children: [
                               Text(
                                 'Destination : ' +
-                                    _listLocation[index].location,
+                                    listLocation[index].location,
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontFamily: 'Montserrat',
@@ -62,7 +58,7 @@ class ProcessLocationPage extends StatelessWidget {
                                 height: size.height * 0.03,
                               ),
                               Text(
-                                'Date : ' + _listLocation[index].date,
+                                'Date : ' + listLocation[index].date,
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'Montserrat',
@@ -76,7 +72,7 @@ class ProcessLocationPage extends StatelessWidget {
                               ),
                               Text(
                                 'Number of recipients : ' +
-                                    _listLocation[index].numPeople.toString(),
+                                    listLocation[index].numPeople.toString(),
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'Montserrat',
@@ -93,7 +89,7 @@ class ProcessLocationPage extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Status : ' + _listLocation[index].status,
+                                    'Status : ' + listLocation[index].status,
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontFamily: 'Montserrat',
@@ -104,7 +100,7 @@ class ProcessLocationPage extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     height: size.height * 0.045,
-                                    width: size.width * 0.38,
+                                    width: size.width * 0.4,
                                     child: ElevatedButton(
                                       onPressed: () {
                                         Navigator.push(
@@ -131,7 +127,7 @@ class ProcessLocationPage extends StatelessWidget {
                           ),
                         ))));
           },
-          itemCount: _listLocation.length,
+          itemCount: listLocation.length,
         ),
       ),
     );

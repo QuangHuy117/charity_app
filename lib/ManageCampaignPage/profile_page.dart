@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations
 
+import 'package:charity_app/CreateNewFundPage/create_new_fund_page.dart';
 import 'package:charity_app/ManageCampaignPage/update_campaign_page.dart';
 import 'package:charity_app/ManageFundPage/manage_fund_page.dart';
 import 'package:charity_app/models/charity.dart';
@@ -18,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   List<Charity> listCharity = [
     Charity(
-      // id: 'CH1',
+      location: 'Ho Chi Minh City, VietNam',
       title: 'Education Dono For Poor Child',
       topic: 'Education',
       organization: 'NCAPA',
@@ -30,13 +31,13 @@ class _ProfilePageState extends State<ProfilePage> {
       // dateLeft: 20,
       startDate: '14/02/2022',
       endDate: '30/04/2022',
-      status: 'In Progress',
+      status: true,
       peopleJoin: 40,
       targetMoney: 10000,
       // raisedMoney: 530.65,
     ),
     Charity(
-      // id: 'CH2',
+      location: 'Ho Chi Minh City, VietNam',
       title: 'Ebola Disease in Africa',
       topic: 'Pandemic',
       organization: 'NCAPA',
@@ -48,13 +49,13 @@ class _ProfilePageState extends State<ProfilePage> {
       // dateLeft: 20,
       startDate: '14/02/2022',
       endDate: '30/04/2022',
-      status: 'In Progress',
+      status: true,
       peopleJoin: 20,
       targetMoney: 100000,
       // raisedMoney: 12400.85,
     ),
     Charity(
-      // id: 'CH3',
+      location: 'Ho Chi Minh City, VietNam',
       title: 'Ebola Disease in Africa',
       topic: 'Pandemic',
       organization: 'NCAPA',
@@ -66,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
       // dateLeft: 20,
       startDate: '31/12/2021',
       endDate: '01/03/2022',
-      status: 'Done',
+      status: true,
       peopleJoin: 50,
       targetMoney: 100000,
       // raisedMoney: 12400.85,
@@ -85,6 +86,22 @@ class _ProfilePageState extends State<ProfilePage> {
       } else {
         setState(() {
           listCharity[index] = result;
+        });
+      }
+    });
+  }
+
+  Future addNewCampaign(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CreateNewFundPage()),
+    );
+    setState(() {
+      if (result == null) {
+        return;
+      } else {
+        setState(() {
+          listCharity.add(result);
         });
       }
     });
@@ -137,360 +154,418 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(
                   height: size.height * 0.025,
                 ),
-                // Stack(
-                //   children: [
-                SizedBox(
-                  height: size.height * 0.9,
-                  width: size.width,
-                  // color: Colors.red,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Manage Campaign',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF1B2441),
+                Stack(
+                  children: [
+                    SizedBox(
+                      height: size.height * 0.9,
+                      width: size.width,
+                      // color: Colors.red,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Manage Campaign',
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1B2441),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.03,
-                      ),
-                      // CircleAvatar(
-                      //   radius: (size.width * 0.085),
-                      //   backgroundColor: Colors.red,
-                      //   child: ClipRRect(
-                      //     borderRadius:
-                      //         BorderRadius.circular(size.width * 0.085),
-                      //     child: Image(
-                      //       image: AssetImage('assets/images/avatar.jpg'),
-                      //       height: size.height * 0.1,
-                      //       width: size.width * 0.2,
-                      //       fit: BoxFit.cover,
-                      //     ),
-                      //   ),
-                      // ),
-                      // SizedBox(
-                      //   height: size.height * 0.01,
-                      // ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     Text(
-                      //       'David William',
-                      //       style: TextStyle(
-                      //         fontSize: 24,
-                      //       ),
-                      //     ),
-                      //     SizedBox(
-                      //       width: size.width * 0.02,
-                      //     ),
-                      //     CircleAvatar(
-                      //       backgroundColor: Colors.blue,
-                      //       radius: size.width * 0.018,
-                      //       child: Icon(
-                      //         Icons.check,
-                      //         size: 14,
-                      //         color: Colors.white,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // Text(
-                      //   'davidwilliam@gmail.com',
-                      //   style: TextStyle(
-                      //       fontSize: 15,
-                      //       color: Color(0xFF209FA6).withOpacity(0.5)),
-                      // ),
-                      // SizedBox(
-                      //   height: size.height * 0.02,
-                      // ),
-                      // Container(
-                      //   padding:
-                      //       EdgeInsets.symmetric(horizontal: size.width * 0.15),
-                      //   child: Text(
-                      //     'An organization that deals with casualties and prevents warfare',
-                      //     textAlign: TextAlign.center,
-                      //     style: TextStyle(
-                      //       fontSize: 16,
-                      //       color: Color(0xFF209FA6).withOpacity(0.4),
-                      //       fontWeight: FontWeight.bold,
-                      //     ),
-                      //   ),
-                      // ),
-                      // SizedBox(
-                      //   height: size.height * 0.05,
-                      // ),
-                      SizedBox(
-                        height: size.height * 0.83,
-                        width: size.width,
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            return Container(
-                              height: size.height * 0.42,
-                              margin:
-                                  EdgeInsets.only(bottom: size.width * 0.04),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ManageFundDetailPage()));
-                                },
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: Colors.grey.shade300, width: 1),
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.05),
-                                  ),
-                                  elevation: 0,
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.04,
-                                        vertical: size.width * 0.04),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                              size.width * 0.07),
-                                          child: Image.asset(
-                                            listCharity[index].image,
-                                            fit: BoxFit.cover,
-                                            height: size.height * 0.15,
-                                            width: size.width,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: size.height * 0.025,
-                                        ),
-                                        Text(
-                                          '${listCharity[index].title}',
-                                          style: TextStyle(
-                                            fontSize: 24,
-                                            color: Color(0xFF1B2441),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: size.height * 0.01,
-                                        ),
-                                        Text(
-                                          'By ${listCharity[index].organization}',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            color: Color(0xFF209FA6)
-                                                .withOpacity(0.7),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: size.height * 0.01,
-                                        ),
-                                        Text(
-                                          listCharity[index].startDate +
-                                              ' - ' +
-                                              listCharity[index].endDate,
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF209FA6)
-                                                .withOpacity(0.7),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: size.height * 0.01,
-                                        ),
-                                        // Row(
-                                        //     mainAxisAlignment:
-                                        //         MainAxisAlignment.spaceBetween,
-                                        //     children: [
-                                        // Text(
-                                        //   '\$${listCharity[index].raisedMoney} Raised',
-                                        //   style: TextStyle(
-                                        //     fontSize: 20,
-                                        //     fontFamily: 'Fredoka',
-                                        //     fontWeight: FontWeight.bold,
-                                        //     color: Color(0xFF209FA6),
-                                        //   ),
-                                        // ),
-                                        Text(
-                                          'Money Raised - \$' +
-                                              format.format(listCharity[index]
-                                                  .targetMoney),
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF209FA6),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: size.height * 0.01,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                          SizedBox(
+                            height: size.height * 0.03,
+                          ),
+                          // CircleAvatar(
+                          //   radius: (size.width * 0.085),
+                          //   backgroundColor: Colors.red,
+                          //   child: ClipRRect(
+                          //     borderRadius:
+                          //         BorderRadius.circular(size.width * 0.085),
+                          //     child: Image(
+                          //       image: AssetImage('assets/images/avatar.jpg'),
+                          //       height: size.height * 0.1,
+                          //       width: size.width * 0.2,
+                          //       fit: BoxFit.cover,
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: size.height * 0.01,
+                          // ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     Text(
+                          //       'David William',
+                          //       style: TextStyle(
+                          //         fontSize: 24,
+                          //       ),
+                          //     ),
+                          //     SizedBox(
+                          //       width: size.width * 0.02,
+                          //     ),
+                          //     CircleAvatar(
+                          //       backgroundColor: Colors.blue,
+                          //       radius: size.width * 0.018,
+                          //       child: Icon(
+                          //         Icons.check,
+                          //         size: 14,
+                          //         color: Colors.white,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Text(
+                          //   'davidwilliam@gmail.com',
+                          //   style: TextStyle(
+                          //       fontSize: 15,
+                          //       color: Color(0xFF209FA6).withOpacity(0.5)),
+                          // ),
+                          // SizedBox(
+                          //   height: size.height * 0.02,
+                          // ),
+                          // Container(
+                          //   padding:
+                          //       EdgeInsets.symmetric(horizontal: size.width * 0.15),
+                          //   child: Text(
+                          //     'An organization that deals with casualties and prevents warfare',
+                          //     textAlign: TextAlign.center,
+                          //     style: TextStyle(
+                          //       fontSize: 16,
+                          //       color: Color(0xFF209FA6).withOpacity(0.4),
+                          //       fontWeight: FontWeight.bold,
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: size.height * 0.05,
+                          // ),
+                          SizedBox(
+                            height: size.height * 0.83,
+                            width: size.width,
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  height: size.height * 0.42,
+                                  margin: EdgeInsets.only(
+                                      bottom: size.width * 0.04),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ManageFundDetailPage()));
+                                    },
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Colors.grey.shade300,
+                                            width: 1),
+                                        borderRadius: BorderRadius.circular(
+                                            size.width * 0.05),
+                                      ),
+                                      elevation: 0,
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: size.width * 0.04,
+                                            vertical: size.width * 0.04),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              'Status: ' +
-                                                  listCharity[index].status,
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                color: Color(0xFF1B2441),
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      size.width * 0.07),
+                                              child: Image.asset(
+                                                listCharity[index].image,
+                                                fit: BoxFit.cover,
+                                                height: size.height * 0.15,
+                                                width: size.width,
                                               ),
                                             ),
                                             SizedBox(
-                                              height: size.height * 0.05,
-                                              width: size.width * 0.2,
-                                              child: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    primary: Color(0xFF209FA6),
-                                                  ),
-                                                  onPressed: () {
-                                                    updateCampaign(
-                                                        context, index);
-                                                  },
-                                                  child: Text(
-                                                    'Update',
-                                                    style:
-                                                        TextStyle(fontSize: 16),
-                                                  )),
+                                              height: size.height * 0.025,
                                             ),
+                                            Text(
+                                              '${listCharity[index].title}',
+                                              style: TextStyle(
+                                                fontSize: 24,
+                                                color: Color(0xFF1B2441),
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.01,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                SizedBox(
+                                                  width: size.width * 0.33,
+                                                  child: Text(
+                                                    'By ${listCharity[index].organization}',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Color(0xFF209FA6)
+                                                          .withOpacity(0.7),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  width: size.width * 0.5,
+                                                  child: Text(
+                                                    listCharity[index]
+                                                            .startDate +
+                                                        ' - ' +
+                                                        listCharity[index]
+                                                            .endDate,
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Color(0xFF209FA6)
+                                                          .withOpacity(0.7),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.01,
+                                            ),
+                                            // Row(
+                                            //     mainAxisAlignment:
+                                            //         MainAxisAlignment.spaceBetween,
+                                            //     children: [
+                                            // Text(
+                                            //   '\$${listCharity[index].raisedMoney} Raised',
+                                            //   style: TextStyle(
+                                            //     fontSize: 20,
+                                            //     fontFamily: 'Fredoka',
+                                            //     fontWeight: FontWeight.bold,
+                                            //     color: Color(0xFF209FA6),
+                                            //   ),
+                                            // ),
+                                            Text(
+                                              'Money Raised - \$' +
+                                                  format.format(
+                                                      listCharity[index]
+                                                          .targetMoney),
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF209FA6),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.01,
+                                            ),
+                                            Text(
+                                              'Location - ' +
+                                                  listCharity[index].location,
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF209FA6),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.01,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Status: '
+                                                      '${listCharity[index].status ? 'In Progress' : 'Done'}',
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color(0xFF1B2441),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: size.height * 0.05,
+                                                  width: size.width * 0.2,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        primary:
+                                                            Color(0xFF209FA6),
+                                                      ),
+                                                      onPressed: () {
+                                                        updateCampaign(
+                                                            context, index);
+                                                      },
+                                                      child: Text(
+                                                        'Update',
+                                                        style: TextStyle(
+                                                            fontSize: 16),
+                                                      )),
+                                                ),
+                                              ],
+                                            ),
+                                            // ]
+                                            // ),
                                           ],
                                         ),
-                                        // ]
-                                        // ),
-                                      ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            );
+                                );
+                              },
+                              itemCount: listCharity.length,
+                            ),
+                          ),
+                          // SizedBox(
+                          //   height: size.height * 0.83,
+                          //   width: size.width,
+                          //   child: ListView.builder(
+                          //     itemBuilder: (context, index) {
+                          //       return Container(
+                          //         height: size.height * 0.35,
+                          //         margin:
+                          //             EdgeInsets.only(bottom: size.width * 0.04),
+                          //         child: GestureDetector(
+                          //           onTap: () {
+                          //             Navigator.push(
+                          //                 context,
+                          //                 MaterialPageRoute(
+                          //                     builder: (context) =>
+                          //                         ManageFundDetailPage()));
+                          //           },
+                          //           child: Card(
+                          //             shape: RoundedRectangleBorder(
+                          //               side: BorderSide(
+                          //                   color: Colors.grey.shade300, width: 1),
+                          //               borderRadius: BorderRadius.circular(
+                          //                   size.width * 0.08),
+                          //             ),
+                          //             elevation: 0,
+                          //             child: Container(
+                          //               padding: EdgeInsets.symmetric(
+                          //                   horizontal: size.width * 0.05,
+                          //                   vertical: size.width * 0.04),
+                          //               child: Column(
+                          //                 crossAxisAlignment:
+                          //                     CrossAxisAlignment.start,
+                          //                 children: [
+                          //                   ClipRRect(
+                          //                     borderRadius: BorderRadius.circular(
+                          //                         size.width * 0.07),
+                          //                     child: Image(
+                          //                       image: AssetImage(
+                          //                           '${listCharity[index].image}'),
+                          //                       fit: BoxFit.cover,
+                          //                       height: size.height * 0.15,
+                          //                       width: size.width,
+                          //                     ),
+                          //                   ),
+                          //                   SizedBox(
+                          //                     height: size.height * 0.025,
+                          //                   ),
+                          //                   Text(
+                          //                     '${listCharity[index].title}',
+                          //                     style: TextStyle(
+                          //                       fontSize: 22,
+                          //                       fontFamily: 'Fredoka',
+                          //                       color: Color(0xFF1B2441),
+                          //                       fontWeight: FontWeight.bold,
+                          //                     ),
+                          //                   ),
+                          //                   SizedBox(
+                          //                     height: size.height * 0.01,
+                          //                   ),
+                          //                   Text(
+                          //                     'By ${listCharity[index].organization}',
+                          //                     style: TextStyle(
+                          //                       fontSize: 16,
+                          //                       fontFamily: 'Fredoka',
+                          //                       color: Color(0xFF209FA6)
+                          //                           .withOpacity(0.7),
+                          //                     ),
+                          //                   ),
+                          //                   SizedBox(
+                          //                     height: size.height * 0.03,
+                          //                   ),
+                          //                   // Row(
+                          //                   //     mainAxisAlignment:
+                          //                   //         MainAxisAlignment
+                          //                   //             .spaceBetween,
+                          //                   //     children: [
+                          //                   // Text(
+                          //                   //   '\$${listCharity[index].raisedMoney} Raised',
+                          //                   //   style: TextStyle(
+                          //                   //     fontSize: 20,
+                          //                   //     fontFamily: 'Fredoka',
+                          //                   //     fontWeight: FontWeight.bold,
+                          //                   //     color: Color(0xFF209FA6),
+                          //                   //   ),
+                          //                   // ),
+                          //                   Text(
+                          //                     'Total Amount - \$' +
+                          //                         format.format(listCharity[index]
+                          //                             .targetMoney),
+                          //                     style: TextStyle(
+                          //                       fontSize: 20,
+                          //                       fontFamily: 'Fredoka',
+                          //                       fontWeight: FontWeight.bold,
+                          //                       color: Color(0xFF209FA6),
+                          //                     ),
+                          //                   ),
+                          //                   // ]),
+                          //                 ],
+                          //               ),
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       );
+                          //     },
+                          //     itemCount: listCharity.length,
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      bottom: size.width * 0.03,
+                      child: Container(
+                        height: size.height * 0.065,
+                        width: size.width * 0.8,
+                        margin:
+                            EdgeInsets.symmetric(horizontal: size.width * 0.06),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            addNewCampaign(context);
                           },
-                          itemCount: listCharity.length,
+                          child: Text(
+                            'Create New',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.white.withOpacity(0.8),
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: Color(0xFF209FA6),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      size.width * 0.04))),
                         ),
                       ),
-                      // SizedBox(
-                      //   height: size.height * 0.83,
-                      //   width: size.width,
-                      //   child: ListView.builder(
-                      //     itemBuilder: (context, index) {
-                      //       return Container(
-                      //         height: size.height * 0.35,
-                      //         margin:
-                      //             EdgeInsets.only(bottom: size.width * 0.04),
-                      //         child: GestureDetector(
-                      //           onTap: () {
-                      //             Navigator.push(
-                      //                 context,
-                      //                 MaterialPageRoute(
-                      //                     builder: (context) =>
-                      //                         ManageFundDetailPage()));
-                      //           },
-                      //           child: Card(
-                      //             shape: RoundedRectangleBorder(
-                      //               side: BorderSide(
-                      //                   color: Colors.grey.shade300, width: 1),
-                      //               borderRadius: BorderRadius.circular(
-                      //                   size.width * 0.08),
-                      //             ),
-                      //             elevation: 0,
-                      //             child: Container(
-                      //               padding: EdgeInsets.symmetric(
-                      //                   horizontal: size.width * 0.05,
-                      //                   vertical: size.width * 0.04),
-                      //               child: Column(
-                      //                 crossAxisAlignment:
-                      //                     CrossAxisAlignment.start,
-                      //                 children: [
-                      //                   ClipRRect(
-                      //                     borderRadius: BorderRadius.circular(
-                      //                         size.width * 0.07),
-                      //                     child: Image(
-                      //                       image: AssetImage(
-                      //                           '${listCharity[index].image}'),
-                      //                       fit: BoxFit.cover,
-                      //                       height: size.height * 0.15,
-                      //                       width: size.width,
-                      //                     ),
-                      //                   ),
-                      //                   SizedBox(
-                      //                     height: size.height * 0.025,
-                      //                   ),
-                      //                   Text(
-                      //                     '${listCharity[index].title}',
-                      //                     style: TextStyle(
-                      //                       fontSize: 22,
-                      //                       fontFamily: 'Fredoka',
-                      //                       color: Color(0xFF1B2441),
-                      //                       fontWeight: FontWeight.bold,
-                      //                     ),
-                      //                   ),
-                      //                   SizedBox(
-                      //                     height: size.height * 0.01,
-                      //                   ),
-                      //                   Text(
-                      //                     'By ${listCharity[index].organization}',
-                      //                     style: TextStyle(
-                      //                       fontSize: 16,
-                      //                       fontFamily: 'Fredoka',
-                      //                       color: Color(0xFF209FA6)
-                      //                           .withOpacity(0.7),
-                      //                     ),
-                      //                   ),
-                      //                   SizedBox(
-                      //                     height: size.height * 0.03,
-                      //                   ),
-                      //                   // Row(
-                      //                   //     mainAxisAlignment:
-                      //                   //         MainAxisAlignment
-                      //                   //             .spaceBetween,
-                      //                   //     children: [
-                      //                   // Text(
-                      //                   //   '\$${listCharity[index].raisedMoney} Raised',
-                      //                   //   style: TextStyle(
-                      //                   //     fontSize: 20,
-                      //                   //     fontFamily: 'Fredoka',
-                      //                   //     fontWeight: FontWeight.bold,
-                      //                   //     color: Color(0xFF209FA6),
-                      //                   //   ),
-                      //                   // ),
-                      //                   Text(
-                      //                     'Total Amount - \$' +
-                      //                         format.format(listCharity[index]
-                      //                             .targetMoney),
-                      //                     style: TextStyle(
-                      //                       fontSize: 20,
-                      //                       fontFamily: 'Fredoka',
-                      //                       fontWeight: FontWeight.bold,
-                      //                       color: Color(0xFF209FA6),
-                      //                     ),
-                      //                   ),
-                      //                   // ]),
-                      //                 ],
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       );
-                      //     },
-                      //     itemCount: listCharity.length,
-                      //   ),
-                      // ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-
-                //   ],
-                // ),
               ],
             ),
           ),

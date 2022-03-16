@@ -458,7 +458,7 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
                                                 height: size.height * 0.03,
                                               ),
                                               Text(
-                                                'Undertaken by: ',
+                                                'Assign by: ',
                                                 style: TextStyle(
                                                   fontSize: 18,
                                                   color: Color(0xFF209FA6),
