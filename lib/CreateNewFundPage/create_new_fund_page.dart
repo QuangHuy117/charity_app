@@ -118,7 +118,7 @@ class _CreateNewFundPageState extends State<CreateNewFundPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Campaign Image',
+                      'Campaign Banner',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey,

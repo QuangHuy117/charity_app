@@ -24,15 +24,15 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
         name: 'Distributing gifts to children',
         description:
             'Take out the gift and divide it equally among the children in the orphanage',
-        underTaken: 'PhucNHB MinhBN AnNV HoangNT ANV ThamNT'),
+        underTaken: 'Dan Hermann, Theresa Balistreri, Rico Veum, Anthony Cormier, Eddie Purdy'),
     Task(
         name: 'Task 2',
         description: 'Going to help and teach the children in the ABC City',
-        underTaken: 'PhucNHB MinhBN AnNV HoangNT ANV ThamNT'),
+        underTaken: 'Lolita Brown, Maud Kunze, Trenton Altenwerth, Jarred Nolan, Felton King'),
     Task(
         name: 'Task 3',
         description: 'Going to help and teach the children in the DEF City',
-        underTaken: 'PhucNHB MinhBN AnNV HoangNT ANV ThamNT'),
+        underTaken: 'Neil Nicolas, Simone Hauck, Monica Smitham, Alanna Labadie, Garnett Braun'),
   ];
 
   Future getListTaken(
@@ -44,7 +44,7 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
       } else {
         for (var i in result) {
           setState(() {
-            _listTask[index].underTaken += ' ' + i;
+            _listTask[index].underTaken += ', ' + i;
           });
         }
         _listTaskTaken.clear();

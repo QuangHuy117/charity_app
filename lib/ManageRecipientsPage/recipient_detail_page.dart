@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:io';
 
@@ -218,72 +218,94 @@ class _RecipientDetailPageState extends State<RecipientDetailPage> {
                     SizedBox(
                       height: size.height * 0.01,
                     ),
-                    Text(
-                      'Gender',
-                      style: TextStyle(fontSize: 17, color: Colors.grey),
-                    ),
-                    TextFormField(
-                      controller: gender,
-                      style: TextStyle(
-                        color: Color(0xFF209FA6),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                      decoration: InputDecoration(
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.grey.shade300,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: size.width * 0.45,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Gender',
+                                style:
+                                    TextStyle(fontSize: 17, color: Colors.grey),
+                              ),
+                              TextFormField(
+                                controller: gender,
+                                style: TextStyle(
+                                  color: Color(0xFF209FA6),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                                decoration: InputDecoration(
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.grey.shade300,
+                                    ),
+                                  ),
+                                  isDense: true,
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: size.width * 0.025),
+                                  prefixIconConstraints: BoxConstraints(
+                                      maxHeight: size.height * 0.03),
+                                  prefixIcon: Padding(
+                                    padding:
+                                        EdgeInsets.only(right: size.width * 0.04),
+                                    child: Icon(
+                                      MyFlutterApp.vcard,
+                                      size: 22,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        isDense: true,
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: size.width * 0.025),
-                        prefixIconConstraints:
-                            BoxConstraints(maxHeight: size.height * 0.03),
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.only(right: size.width * 0.04),
-                          child: Icon(
-                            MyFlutterApp.vcard,
-                            size: 22,
-                            color: Colors.grey,
+                        SizedBox(
+                          width: size.width * 0.45,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Identity Card',
+                                style:
+                                    TextStyle(fontSize: 17, color: Colors.grey),
+                              ),
+                              TextFormField(
+                                controller: idCard,
+                                style: TextStyle(
+                                  color: Color(0xFF209FA6),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                                decoration: InputDecoration(
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.grey.shade300,
+                                    ),
+                                  ),
+                                  isDense: true,
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: size.width * 0.025),
+                                  prefixIconConstraints: BoxConstraints(
+                                      maxHeight: size.height * 0.03),
+                                  prefixIcon: Padding(
+                                    padding:
+                                        EdgeInsets.only(right: size.width * 0.04),
+                                    child: Icon(
+                                      MyFlutterApp.vcard,
+                                      size: 22,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    Text(
-                      'Identity Card',
-                      style: TextStyle(fontSize: 17, color: Colors.grey),
-                    ),
-                    TextFormField(
-                      controller: idCard,
-                      style: TextStyle(
-                        color: Color(0xFF209FA6),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                      decoration: InputDecoration(
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.grey.shade300,
-                          ),
-                        ),
-                        isDense: true,
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: size.width * 0.025),
-                        prefixIconConstraints:
-                            BoxConstraints(maxHeight: size.height * 0.03),
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.only(right: size.width * 0.04),
-                          child: Icon(
-                            MyFlutterApp.vcard,
-                            size: 22,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
+                      ],
                     ),
                     SizedBox(
                       height: size.height * 0.01,

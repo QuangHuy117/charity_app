@@ -257,7 +257,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  ManageFundDetailPage()));
+                                                  ManageFundDetailPage(charity: listCharity[index],)));
                                     },
                                     child: Card(
                                       shape: RoundedRectangleBorder(

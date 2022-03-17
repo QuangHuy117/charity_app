@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:charity_app/HomePage/home_page.dart';
+import 'package:charity_app/HomePage/user_home_page.dart';
 import 'package:charity_app/SignUpPage/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
@@ -13,6 +14,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  TextEditingController email = TextEditingController();
+  bool obscure = true;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -57,7 +60,11 @@ class _SignInPageState extends State<SignInPage> {
                         margin:
                             EdgeInsets.symmetric(horizontal: size.width * 0.06),
                         child: TextFormField(
-                          textAlign: TextAlign.center,
+                          controller: email,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                          // textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             label: Padding(
                               padding: EdgeInsets.only(left: size.width * 0.01),
@@ -92,9 +99,25 @@ class _SignInPageState extends State<SignInPage> {
                         margin:
                             EdgeInsets.symmetric(horizontal: size.width * 0.06),
                         child: TextFormField(
-                          textAlign: TextAlign.center,
-                          obscureText: true,
+                          // textAlign: TextAlign.center,
+                          obscureText: obscure,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                           decoration: InputDecoration(
+                            suffixIcon: obscure
+                                ? GestureDetector(
+                                    child: Icon(Icons.visibility_off),
+                                    onTap: () => setState(() {
+                                      obscure = false;
+                                    }),
+                                  )
+                                : GestureDetector(
+                                    child: Icon(Icons.visibility),
+                                    onTap: () => setState(() {
+                                      obscure = true;
+                                    }),
+                                  ),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide:
@@ -127,10 +150,7 @@ class _SignInPageState extends State<SignInPage> {
                           EdgeInsets.symmetric(horizontal: size.width * 0.06),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                          checkSignIn(email.text);
                         },
                         child: Text(
                           'Continue',
@@ -294,5 +314,15 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
     );
+  }
+
+  void checkSignIn(String email) {
+    if (email == 'admin') {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    } else {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePageUser()));
+    }
   }
 }

@@ -1,21 +1,19 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:charity_app/ManageLocationPage/manage_location_page.dart';
-import 'package:charity_app/ManageTaskPage/manage_task_page.dart';
-import 'package:charity_app/ManageVolunteerPage/manage_volunteer_page.dart';
-import 'package:charity_app/PendingRequestPage/pending_request_page.dart';
+import 'package:charity_app/ManageTaskPage/user_manage_task_page.dart';
 import 'package:charity_app/models/charity.dart';
 import 'package:flutter/material.dart';
 
-class ManageFundDetailPage extends StatefulWidget {
+class ManageUserCampaignPage extends StatefulWidget {
   final Charity charity;
-  const ManageFundDetailPage({Key? key, required this.charity}) : super(key: key);
+  const ManageUserCampaignPage({Key? key, required this.charity})
+      : super(key: key);
 
   @override
-  State<ManageFundDetailPage> createState() => _ManageFundDetailPageState();
+  State<ManageUserCampaignPage> createState() => _ManageUserCampaignPageState();
 }
 
-class _ManageFundDetailPageState extends State<ManageFundDetailPage> {
+class _ManageUserCampaignPageState extends State<ManageUserCampaignPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -105,97 +103,7 @@ class _ManageFundDetailPageState extends State<ManageFundDetailPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Pending Request',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xFF209FA6),
-                            )),
-                        Icon(
-                          Icons.arrow_right,
-                          size: 30,
-                          color: Color(0xFF209FA6),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                SizedBox(
-                  height: size.height * 0.06,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      elevation: 0,
-                    ),
-                    onPressed: () {
-                      selectedItem(context, 2);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Manage Volunteer',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xFF209FA6),
-                            )),
-                        Icon(
-                          Icons.arrow_right,
-                          size: 30,
-                          color: Color(0xFF209FA6),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                SizedBox(
-                  height: size.height * 0.06,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      elevation: 0,
-                    ),
-                    onPressed: () {
-                      selectedItem(context, 3);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
                         Text('Manage Task',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xFF209FA6),
-                            )),
-                        Icon(
-                          Icons.arrow_right,
-                          size: 30,
-                          color: Color(0xFF209FA6),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                SizedBox(
-                  height: size.height * 0.06,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      elevation: 0,
-                    ),
-                    onPressed: () {
-                      selectedItem(context, 4);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Manage Location',
                             style: TextStyle(
                               fontSize: 18,
                               color: Color(0xFF209FA6),
@@ -250,22 +158,7 @@ class _ManageFundDetailPageState extends State<ManageFundDetailPage> {
     switch (index) {
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PendingRequestPage(),
-        ));
-        break;
-      case 2:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ManageVolunteerPage(),
-        ));
-        break;
-      case 3:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ManageTaskPage(),
-        ));
-        break;
-      case 4:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ManageLocationPage(),
+          builder: (context) => ManageUserTaskPage(),
         ));
         break;
     }

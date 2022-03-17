@@ -7,7 +7,8 @@ import 'package:readmore/readmore.dart';
 
 class DetailsPage extends StatefulWidget {
   final Charity charity;
-  const DetailsPage({Key? key, required this.charity}) : super(key: key);
+  final int role;
+  const DetailsPage({Key? key, required this.charity, required this.role}) : super(key: key);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -294,7 +295,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     SizedBox(
                       width: size.width * 0.1,
                     ),
-                    Container(
+                    widget.role == 2 ? Container(
                       height: size.height * 0.045,
                       width: size.width * 0.25,
                       margin:
@@ -320,7 +321,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 borderRadius:
                                     BorderRadius.circular(size.width * 0.02))),
                       ),
-                    )
+                    ) : Container(),
                   ],
                 ),
                 SizedBox(
