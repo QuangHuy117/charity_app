@@ -91,7 +91,6 @@ class _ManageRecipientsPageState extends State<ManageRecipientsPage> {
       MaterialPageRoute(builder: (context) => CreateRecipientPage()),
     );
     setState(() {
-      print(result);
       if (result == null) {
         return;
       } else {

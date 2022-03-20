@@ -269,7 +269,7 @@ class _HomePageUserState extends State<HomePageUser> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                       height: size.height * 0.05,
                       width: size.width * 0.73,
                       child: TextFormField(
@@ -465,14 +465,14 @@ class _HomePageUserState extends State<HomePageUser> {
                 height: size.height * 0.02,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text('Popular Campaign',
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontFamily: 'Fredoka',
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF1B2441))),
+                  // Text('Popular Campaign',
+                  //     style: TextStyle(
+                  //         fontSize: 25,
+                  //         fontFamily: 'Fredoka',
+                  //         fontWeight: FontWeight.bold,
+                  //         color: Color(0xFF1B2441))),
                   Text('See All',
                       style: TextStyle(
                         fontSize: 15,
@@ -521,7 +521,7 @@ class _HomePageUserState extends State<HomePageUser> {
                                   borderRadius:
                                       BorderRadius.circular(size.width * 0.07),
                                   child: Image.asset(
-                                    '${listCharity[index].image}',
+                                    listCharity[index].image,
                                     fit: BoxFit.cover,
                                     height: size.height * 0.15,
                                     width: size.width,
@@ -531,7 +531,7 @@ class _HomePageUserState extends State<HomePageUser> {
                                   height: size.height * 0.02,
                                 ),
                                 Text(
-                                  '${listCharity[index].title}',
+                                  listCharity[index].title,
                                   style: TextStyle(
                                     fontSize: 24,
                                     color: Color(0xFF1B2441),
@@ -591,7 +591,7 @@ class _HomePageUserState extends State<HomePageUser> {
                                 //   ),
                                 // ),
                                 Text(
-                                  'Money Raised - \$' +
+                                  'Money - \$' +
                                       format.format(
                                           listCharity[index].targetMoney),
                                   style: TextStyle(
@@ -615,8 +615,7 @@ class _HomePageUserState extends State<HomePageUser> {
                                   height: size.height * 0.01,
                                 ),
                                 Text(
-                                  'Status: ' +
-                                      '${listCharity[index].status ? 'In Progress' : 'Done'}',
+                                  'Status: ''${listCharity[index].status ? 'In Progress' : 'Done'}',
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,

@@ -5,13 +5,35 @@ import 'package:charity_app/ManageRecipientsPage/manage_recipients_page.dart';
 import 'package:charity_app/models/location.dart';
 import 'package:flutter/material.dart';
 
-class ProcessLocationPage extends StatelessWidget {
+class ProcessLocationPage extends StatefulWidget {
   final List<Location> listLocation;
-  const ProcessLocationPage({Key? key, required this.listLocation}) : super(key: key);
+  const ProcessLocationPage({Key? key, required this.listLocation})
+      : super(key: key);
+
+  @override
+  State<ProcessLocationPage> createState() => _ProcessLocationPageState();
+}
+
+class _ProcessLocationPageState extends State<ProcessLocationPage> {
+  Future updateLocation(BuildContext context, int index) async {
+    final result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                LocationDetailPage(location: widget.listLocation[index])));
+    setState(() {
+      if (result == null) {
+        return;
+      } else {
+        setState(() {
+          widget.listLocation[index] = result;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: SizedBox(
@@ -24,11 +46,7 @@ class ProcessLocationPage extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: size.width * 0.04),
                 child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  LocationDetailPage(location: listLocation[index])));
+                      updateLocation(context, index);
                     },
                     child: Card(
                         shape: RoundedRectangleBorder(
@@ -46,8 +64,7 @@ class ProcessLocationPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Destination : ' +
-                                    listLocation[index].location,
+                                'Destination : ' + widget.listLocation[index].location,
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontFamily: 'Montserrat',
@@ -58,7 +75,7 @@ class ProcessLocationPage extends StatelessWidget {
                                 height: size.height * 0.03,
                               ),
                               Text(
-                                'Date : ' + listLocation[index].date,
+                                'Date : ' + widget.listLocation[index].date,
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'Montserrat',
@@ -72,7 +89,7 @@ class ProcessLocationPage extends StatelessWidget {
                               ),
                               Text(
                                 'Number of recipients : ' +
-                                    listLocation[index].numPeople.toString(),
+                                    widget.listLocation[index].numPeople.toString(),
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'Montserrat',
@@ -89,7 +106,7 @@ class ProcessLocationPage extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Status : ' + listLocation[index].status,
+                                    'Status : ' + widget.listLocation[index].status,
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontFamily: 'Montserrat',
@@ -127,7 +144,7 @@ class ProcessLocationPage extends StatelessWidget {
                           ),
                         ))));
           },
-          itemCount: listLocation.length,
+          itemCount: widget.listLocation.length,
         ),
       ),
     );

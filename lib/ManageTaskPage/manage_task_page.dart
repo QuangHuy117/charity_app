@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_final_fields
+// ignore_for_file: prefer_const_constructors, prefer_final_fields, prefer_const_literals_to_create_immutables
 
+import 'package:charity_app/ManageTaskPage/taks_detail_page.dart';
 import 'package:charity_app/models/task.dart';
-import 'package:charity_app/models/task_taken.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
 
 class ManageTaskPage extends StatefulWidget {
@@ -13,43 +15,77 @@ class ManageTaskPage extends StatefulWidget {
 }
 
 class _ManageTaskPageState extends State<ManageTaskPage> {
+  String? _dropDownValue;
   TextEditingController nameCre = TextEditingController();
   TextEditingController descriptionCre = TextEditingController();
-  List<bool> _listEdit = [];
-  List<TextEditingController> _listName = [];
-  List<TextEditingController> _listDescription = [];
-  List<String> _listTaskTaken = [];
+  TextEditingController startDateCre = TextEditingController();
+  TextEditingController endDateCre = TextEditingController();
+  TextEditingController numberCre = TextEditingController();
+
+  var format = DateFormat('dd/MM/yyyy');
+
   List<Task> _listTask = [
     Task(
         name: 'Distributing gifts to children',
+        location: 'District 1',
+        startDate: '15/03/2022',
+        endDate: '15/05/2022',
+        numberMember: 5,
         description:
             'Take out the gift and divide it equally among the children in the orphanage',
-        underTaken: 'Dan Hermann, Theresa Balistreri, Rico Veum, Anthony Cormier, Eddie Purdy'),
+        status: true,
+        underTaken:
+            'Dan Hermann, Theresa Balistreri, Rico Veum, Anthony Cormier, Eddie Purdy, '),
     Task(
         name: 'Task 2',
+        location: 'District 2',
+        startDate: '20/03/2022',
+        endDate: '20/05/2022',
+        numberMember: 2,
         description: 'Going to help and teach the children in the ABC City',
-        underTaken: 'Lolita Brown, Maud Kunze, Trenton Altenwerth, Jarred Nolan, Felton King'),
+        status: true,
+        underTaken:
+            'Lolita Brown, Maud Kunze, Trenton Altenwerth, Jarred Nolan, Felton King, '),
     Task(
         name: 'Task 3',
+        location: 'District 3',
+        startDate: '25/03/2022',
+        endDate: '25/05/2022',
+        numberMember: 8,
         description: 'Going to help and teach the children in the DEF City',
-        underTaken: 'Neil Nicolas, Simone Hauck, Monica Smitham, Alanna Labadie, Garnett Braun'),
+        status: true,
+        underTaken:
+            'Neil Nicolas, Simone Hauck, Monica Smitham, Alanna Labadie, Garnett Braun, '),
   ];
 
-  Future getListTaken(
-      BuildContext context, double height, double width, int index) async {
-    final result = await createDialog(context, height, width);
+  Future updateTask(BuildContext context, int index) async {
+    final result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => DetailTaskPage(task: _listTask[index])));
     setState(() {
       if (result == null) {
         return;
       } else {
-        for (var i in result) {
-          setState(() {
-            _listTask[index].underTaken += ', ' + i;
-          });
-        }
-        _listTaskTaken.clear();
+        setState(() {
+          _listTask[index] = result;
+        });
       }
     });
+  }
+
+  @override
+  void initState() {
+    startDateCre.text = format.format(DateTime.now());
+    endDateCre.text = format.format(DateTime.now().add(Duration(days: 1)));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    startDateCre.dispose();
+    endDateCre.dispose();
   }
 
   @override
@@ -165,128 +201,431 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
                                     return Padding(
                                       padding: EdgeInsets.symmetric(
                                           vertical: size.width * 0.05),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            'Create new task',
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              color: Color(0xFF1B2441),
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: size.height * 0.02,
-                                          ),
-                                          Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: size.width * 0.1),
-                                              child: TextFormField(
-                                                controller: nameCre,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    enabledBorder: OutlineInputBorder(
-                                                        borderRadius: BorderRadius.circular(
-                                                            20),
-                                                        borderSide: BorderSide(
-                                                            color: Colors.grey
-                                                                .shade300)),
-                                                    focusedBorder: OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                20),
-                                                        borderSide: BorderSide(
-                                                            color: Colors.grey
-                                                                .shade300)),
-                                                    hintText: "Task Name",
-                                                    hintStyle: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        color: Color(0xFF209FA6)
-                                                            .withOpacity(0.4))),
-                                              )),
-                                          SizedBox(
-                                            height: size.height * 0.02,
-                                          ),
-                                          Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: size.width * 0.1),
-                                              child: TextFormField(
-                                                controller: descriptionCre,
-                                                minLines: 2,
-                                                maxLines: null,
-                                                keyboardType:
-                                                    TextInputType.multiline,
-                                                textInputAction:
-                                                    TextInputAction.done,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    enabledBorder: OutlineInputBorder(
-                                                        borderRadius: BorderRadius.circular(
-                                                            20),
-                                                        borderSide: BorderSide(
-                                                            color: Colors
-                                                                .grey.shade300)),
-                                                    focusedBorder: OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                20),
-                                                        borderSide: BorderSide(
-                                                            color: Colors.grey
-                                                                .shade300)),
-                                                    hintText:
-                                                        "Task Description",
-                                                    hintStyle: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        color: Color(0xFF209FA6)
-                                                            .withOpacity(0.4))),
-                                              )),
-                                          SizedBox(
-                                            height: size.height * 0.02,
-                                          ),
-                                          Container(
-                                            height: size.height * 0.06,
-                                            width: size.width * 0.8,
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: size.width * 0.06),
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                                _listTask.add(Task(
-                                                    name: nameCre.text,
-                                                    description:
-                                                        descriptionCre.text,
-                                                    underTaken: ''));
-                                              },
-                                              child: Text(
-                                                'Create Task',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 18,
-                                                  color: Colors.white
-                                                      .withOpacity(0.8),
-                                                ),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'Create new task',
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                color: Color(0xFF1B2441),
+                                                fontWeight: FontWeight.bold,
                                               ),
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Color(0xFF209FA6),
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              size.width *
-                                                                  0.04))),
                                             ),
-                                          ),
-                                          Padding(
-                                              padding: EdgeInsets.only(
-                                            bottom: MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom,
-                                          )),
-                                        ],
+                                            SizedBox(
+                                              height: size.height * 0.02,
+                                            ),
+                                            Container(
+                                                margin: EdgeInsets.symmetric(
+                                                    horizontal:
+                                                        size.width * 0.07),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'Task Name',
+                                                      style: TextStyle(
+                                                          fontSize: 17,
+                                                          color: Colors.grey),
+                                                    ),
+                                                    TextFormField(
+                                                      controller: nameCre,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        enabledBorder: OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                    size.width *
+                                                                        0.03),
+                                                            borderSide: BorderSide(
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade300)),
+                                                        focusedBorder: OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                    size.width *
+                                                                        0.03),
+                                                            borderSide: BorderSide(
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade300)),
+                                                        // hintText: "Task Name",
+                                                        // hintStyle: TextStyle(
+                                                        //     fontWeight:
+                                                        //         FontWeight.w700,
+                                                        //     color: Color(0xFF209FA6)
+                                                        //         .withOpacity(0.4))
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )),
+                                            SizedBox(
+                                              height: size.height * 0.01,
+                                            ),
+                                            Container(
+                                                margin: EdgeInsets.symmetric(
+                                                    horizontal:
+                                                        size.width * 0.07),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'Task Location',
+                                                      style: TextStyle(
+                                                          fontSize: 17,
+                                                          color: Colors.grey),
+                                                    ),
+                                                    Container(
+                                                      margin: EdgeInsets.only(
+                                                          top: size.width *
+                                                              0.01),
+                                                      height:
+                                                          size.height * 0.06,
+                                                      width: size.width,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: Colors.grey
+                                                                  .shade400,
+                                                              width: 1),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(size
+                                                                          .width *
+                                                                      0.03)),
+                                                      child: Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    size.width *
+                                                                        0.02),
+                                                        child: StatefulBuilder(
+                                                          builder: (context,
+                                                              setState) {
+                                                            return DropdownButton<
+                                                                String>(
+                                                              underline:
+                                                                  SizedBox(),
+                                                              hint: Text(
+                                                                'Choose location',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color(
+                                                                      0xFF209FA6),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 18,
+                                                                ),
+                                                              ),
+                                                              elevation: 1,
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .arrow_drop_down,
+                                                                color: Color(
+                                                                    0xFF209FA6),
+                                                              ),
+                                                              iconSize: 35,
+                                                              isExpanded: true,
+                                                              style: TextStyle(
+                                                                color: Color(
+                                                                    0xFF209FA6),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 18,
+                                                              ),
+                                                              value:
+                                                                  _dropDownValue,
+                                                              onChanged:
+                                                                  (newValue) {
+                                                                setState(() {
+                                                                  _dropDownValue =
+                                                                      newValue!;
+                                                                });
+                                                              },
+                                                              items: [
+                                                                'District 1',
+                                                                'District 2',
+                                                                'District 3',
+                                                              ].map(
+                                                                  (valueItem) {
+                                                                return DropdownMenuItem(
+                                                                  value:
+                                                                      valueItem,
+                                                                  child: Text(
+                                                                      valueItem),
+                                                                );
+                                                              }).toList(),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )),
+                                            SizedBox(
+                                              height: size.height * 0.01,
+                                            ),
+                                            Container(
+                                              width: size.width,
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal:
+                                                      size.width * 0.07),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Start Date',
+                                                        style: TextStyle(
+                                                            fontSize: 17,
+                                                            color: Colors.grey),
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width * 0.4,
+                                                        child: TextFormField(
+                                                          controller:
+                                                              startDateCre,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            enabledBorder: OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        size.width *
+                                                                            0.03),
+                                                                borderSide: BorderSide(
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade300)),
+                                                            focusedBorder: OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        size.width *
+                                                                            0.03),
+                                                                borderSide: BorderSide(
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade300)),
+                                                            // hintText: "Task Name",
+                                                            // hintStyle: TextStyle(
+                                                            //     fontWeight:
+                                                            //         FontWeight.w700,
+                                                            //     color: Color(0xFF209FA6)
+                                                            //         .withOpacity(0.4))
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'End Date',
+                                                        style: TextStyle(
+                                                            fontSize: 17,
+                                                            color: Colors.grey),
+                                                      ),
+                                                      SizedBox(
+                                                        width: size.width * 0.4,
+                                                        child: TextFormField(
+                                                          controller:
+                                                              endDateCre,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            enabledBorder: OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        size.width *
+                                                                            0.03),
+                                                                borderSide: BorderSide(
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade300)),
+                                                            focusedBorder: OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        size.width *
+                                                                            0.03),
+                                                                borderSide: BorderSide(
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade300)),
+                                                            // hintText: "Task Name",
+                                                            // hintStyle: TextStyle(
+                                                            //     fontWeight:
+                                                            //         FontWeight.w700,
+                                                            //     color: Color(0xFF209FA6)
+                                                            //         .withOpacity(0.4))
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.01,
+                                            ),
+                                            Container(
+                                                margin: EdgeInsets.symmetric(
+                                                    horizontal:
+                                                        size.width * 0.07),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'Number of member required',
+                                                      style: TextStyle(
+                                                          fontSize: 17,
+                                                          color: Colors.grey),
+                                                    ),
+                                                    TextFormField(
+                                                      controller: numberCre,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        enabledBorder: OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                    size.width *
+                                                                        0.03),
+                                                            borderSide: BorderSide(
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade300)),
+                                                        focusedBorder: OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                    size.width *
+                                                                        0.03),
+                                                            borderSide: BorderSide(
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade300)),
+                                                        // hintText: "Task Name",
+                                                        // hintStyle: TextStyle(
+                                                        //     fontWeight:
+                                                        //         FontWeight.w700,
+                                                        //     color: Color(0xFF209FA6)
+                                                        //         .withOpacity(0.4))
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )),
+                                            SizedBox(
+                                              height: size.height * 0.01,
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal:
+                                                      size.width * 0.07),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Task Description',
+                                                    style: TextStyle(
+                                                        fontSize: 17,
+                                                        color: Colors.grey),
+                                                  ),
+                                                  TextFormField(
+                                                    controller: descriptionCre,
+                                                    minLines: 3,
+                                                    maxLines: null,
+                                                    keyboardType:
+                                                        TextInputType.multiline,
+                                                    textInputAction:
+                                                        TextInputAction.done,
+                                                    textAlign: TextAlign.center,
+                                                    decoration: InputDecoration(
+                                                      enabledBorder: OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      size.width *
+                                                                          0.03),
+                                                          borderSide: BorderSide(
+                                                              color: Colors.grey
+                                                                  .shade300)),
+                                                      focusedBorder: OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      size.width *
+                                                                          0.03),
+                                                          borderSide: BorderSide(
+                                                              color: Colors.grey
+                                                                  .shade300)),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.02,
+                                            ),
+                                            Container(
+                                              height: size.height * 0.06,
+                                              width: size.width * 0.8,
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal:
+                                                      size.width * 0.06),
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  onAddButtonPress();
+                                                },
+                                                child: Text(
+                                                  'Add Task',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 18,
+                                                    color: Colors.white
+                                                        .withOpacity(0.8),
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Color(0xFF209FA6),
+                                                    shape: RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    size.width *
+                                                                        0.04))),
+                                              ),
+                                            ),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                              bottom: MediaQuery.of(context)
+                                                  .viewInsets
+                                                  .bottom,
+                                            )),
+                                          ],
+                                        ),
                                       ),
                                     );
                                   },
@@ -344,121 +683,105 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
                         width: size.width,
                         child: ListView.builder(
                           itemBuilder: (context, index) {
-                            _listEdit.add(false);
-                            _listName.add(TextEditingController());
-                            _listDescription.add(TextEditingController());
                             return Container(
                               height: size.height * 0.3,
                               margin:
                                   EdgeInsets.only(bottom: size.width * 0.04),
                               child: GestureDetector(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) =>
-                                  //             ManageFundDetailPage()));
+                                  updateTask(context, index);
                                 },
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: Colors.grey.shade300, width: 1),
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.05),
-                                  ),
-                                  elevation: 1,
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.03,
-                                        vertical: size.width * 0.02),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          alignment: Alignment.centerLeft,
-                                          width: size.width * 0.7,
+                                child: Slidable(
+                                  actionPane: SlidableDrawerActionPane(),
+                                  actionExtentRatio: 0.2,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          color: Colors.grey.shade300,
+                                          width: 1),
+                                      borderRadius: BorderRadius.circular(
+                                          size.width * 0.05),
+                                    ),
+                                    elevation: 1,
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.vertical,
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: size.width * 0.03,
+                                            vertical: size.width * 0.02),
+                                        child: SizedBox(
+                                          width: size.width,
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              _listEdit[index] == true
-                                                  ? TextFormField(
-                                                      style: TextStyle(
-                                                        fontSize: 25,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                      autofocus: true,
-                                                      controller: _listName[
-                                                              index] =
-                                                          TextEditingController()
-                                                            ..text =
-                                                                _listTask[index]
-                                                                    .name,
-                                                      // TextEditingController(
-                                                      //     text: _listTask[
-                                                      //             index]
-                                                      //         .name),
-                                                      readOnly: false,
-                                                      decoration: InputDecoration(
-                                                          isDense: true,
-                                                          contentPadding:
-                                                              EdgeInsets
-                                                                  .symmetric(
-                                                                      vertical:
-                                                                          0)),
-                                                    )
-                                                  : Text(
-                                                      _listTask[index].name,
-                                                      style: TextStyle(
-                                                        fontSize: 25,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
+                                              Text(
+                                                _listTask[index].name,
+                                                style: TextStyle(
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
                                               SizedBox(
                                                 height: size.height * 0.02,
                                               ),
-                                              _listEdit[index] == true
-                                                  ? TextFormField(
-                                                      minLines: 2,
-                                                      maxLines: null,
-                                                      keyboardType:
-                                                          TextInputType
-                                                              .multiline,
-                                                      textInputAction:
-                                                          TextInputAction.done,
-                                                      autofocus: true,
-                                                      controller: _listDescription[
-                                                              index] =
-                                                          TextEditingController()
-                                                            ..text = _listTask[
-                                                                    index]
-                                                                .description,
-                                                      readOnly: false,
-                                                      decoration: InputDecoration(
-                                                          isDense: true,
-                                                          contentPadding:
-                                                              EdgeInsets
-                                                                  .symmetric(
-                                                                      vertical:
-                                                                          0)),
-                                                    )
-                                                  : Text(
-                                                      _listTask[index]
-                                                          .description,
-                                                      style: TextStyle(
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.grey),
-                                                    ),
-                                              SizedBox(
-                                                height: size.height * 0.03,
-                                              ),
                                               Text(
-                                                'Assign by: ',
+                                                _listTask[index].description,
+                                                style: TextStyle(
+                                                    fontSize: 17,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.grey),
+                                              ),
+                                              SizedBox(
+                                                height: size.height * 0.02,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.date_range,
+                                                    color: Colors.grey,
+                                                    size: 28,
+                                                  ),
+                                                  SizedBox(
+                                                    width: size.width * 0.01,
+                                                  ),
+                                                  Text(
+                                                    _listTask[index].startDate +
+                                                        ' - ' +
+                                                        _listTask[index]
+                                                            .endDate,
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color:
+                                                            Color(0xFF209FA6)),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: size.height * 0.01,
+                                              ),
+                                              Row(children: [
+                                                Icon(
+                                                  Icons.place,
+                                                  color: Colors.grey,
+                                                  size: 28,
+                                                ),
+                                                SizedBox(
+                                                  width: size.width * 0.01,
+                                                ),
+                                                Text(
+                                                  _listTask[index].location,
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Color(0xFF209FA6)),
+                                                ),
+                                              ]),
+                                              Text(
+                                                'Undertaken by: ',
                                                 style: TextStyle(
                                                   fontSize: 18,
                                                   color: Color(0xFF209FA6),
@@ -486,144 +809,53 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
                                             ],
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: size.width * 0.02,
-                                        ),
-                                        Container(
-                                          alignment: Alignment.centerRight,
-                                          width: size.width * 0.1,
-                                          child: Column(
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  setState(() {
-                                                    _listTask.remove(
-                                                        _listTask[index]);
-                                                  });
-                                                },
-                                                child: CircleAvatar(
-                                                  backgroundColor: Colors.red,
-                                                  radius: size.width * 0.04,
-                                                  child: Icon(
-                                                    Icons.close,
-                                                    size: 27,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: size.height * 0.04,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  setState(() {
-                                                    if (_listName[index]
-                                                            .text
-                                                            .isNotEmpty ||
-                                                        _listDescription[index]
-                                                            .text
-                                                            .isNotEmpty) {
-                                                      _listTask[index].name =
-                                                          _listName[index].text;
-                                                      _listTask[index]
-                                                              .description =
-                                                          _listDescription[
-                                                                  index]
-                                                              .text;
-                                                    }
-                                                    _listEdit[index] =
-                                                        !_listEdit[index];
-                                                  });
-                                                },
-                                                child: CircleAvatar(
-                                                  backgroundColor:
-                                                      Color(0xFF209FA6),
-                                                  radius: size.width * 0.04,
-                                                  child: Icon(
-                                                    Icons.edit_rounded,
-                                                    size: 27,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: size.height * 0.01,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  getListTaken(
-                                                      context,
-                                                      size.height * 0.28,
-                                                      size.width * 0.4,
-                                                      index);
-                                                },
-                                                child: CircleAvatar(
-                                                  backgroundColor:
-                                                      Color(0xFF209FA6),
-                                                  radius: size.width * 0.04,
-                                                  child: Icon(
-                                                    Icons.add,
-                                                    size: 32,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        // Text(
-                                        //   '${listCharity[index].title}',
-                                        //   style: TextStyle(
-                                        //     fontSize: 22,
-                                        //     fontFamily: 'Fredoka',
-                                        //     color: Color(0xFF1B2441),
-                                        //     fontWeight: FontWeight.bold,
-                                        //   ),
-                                        // ),
-                                        // SizedBox(
-                                        //   height: size.height * 0.01,
-                                        // ),
-                                        // Text(
-                                        //   'By ${listCharity[index].organization}',
-                                        //   style: TextStyle(
-                                        //     fontSize: 16,
-                                        //     fontFamily: 'Fredoka',
-                                        //     color: Color(0xFF209FA6)
-                                        //         .withOpacity(0.7),
-                                        //   ),
-                                        // ),
-                                        // SizedBox(
-                                        //   height: size.height * 0.03,
-                                        // ),
-                                        // Row(
-                                        //     mainAxisAlignment:
-                                        //         MainAxisAlignment
-                                        //             .spaceBetween,
+
+                                        // Container(
+                                        //   alignment: Alignment.centerRight,
+                                        //   width: size.width * 0.1,
+                                        //   child: Column(
                                         //     children: [
-                                        // Text(
-                                        //   '\$${listCharity[index].raisedMoney} Raised',
-                                        //   style: TextStyle(
-                                        //     fontSize: 20,
-                                        //     fontFamily: 'Fredoka',
-                                        //     fontWeight: FontWeight.bold,
-                                        //     color: Color(0xFF209FA6),
+                                        //       GestureDetector(
+                                        //         onTap: () {
+                                        //           setState(() {
+                                        //             _listTask.remove(
+                                        //                 _listTask[index]);
+                                        //           });
+                                        //         },
+                                        //         child: CircleAvatar(
+                                        //           backgroundColor: Colors.red,
+                                        //           radius: size.width * 0.04,
+                                        //           child: Icon(
+                                        //             Icons.close,
+                                        //             size: 27,
+                                        //             color: Colors.white,
+                                        //           ),
+                                        //         ),
+                                        //       ),
+                                        //     ],
                                         //   ),
                                         // ),
-                                        // Text(
-                                        //   'Total Amount - \$' +
-                                        //       format.format(listCharity[index]
-                                        //           .targetMoney),
-                                        //   style: TextStyle(
-                                        //     fontSize: 20,
-                                        //     fontFamily: 'Fredoka',
-                                        //     fontWeight: FontWeight.bold,
-                                        //     color: Color(0xFF209FA6),
-                                        //   ),
-                                        // ),
-                                        // ]),
-                                      ],
+                                      ),
                                     ),
                                   ),
+                                  secondaryActions: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(size.width * 0.06),
+                                        bottomRight: Radius.circular(size.width * 0.04),
+                                      ),
+                                      child: IconSlideAction(
+                                        caption: 'Delete',
+                                        color: Colors.red,
+                                        icon: Icons.delete_outline,
+                                        onTap: () {
+                                          setState(() {
+                                            _listTask.remove(_listTask[index]);
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             );
@@ -636,67 +868,21 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
             )));
   }
 
-  createDialog(BuildContext context, double height, double width) {
-    List<TaskTaken> _listPeople = [
-      TaskTaken('Katherine Yost', false),
-      TaskTaken('Taya Kuhlman', false),
-      TaskTaken('Dave White', false),
-      TaskTaken('Tyrel Wiza', false),
-    ];
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return StatefulBuilder(builder: (context, setState) {
-            return AlertDialog(
-              title: Text('Add people to task!'),
-              content: SizedBox(
-                height: height,
-                width: width,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: height * 0.8,
-                      width: width,
-                      child: ListView.builder(
-                        itemBuilder: (context, index) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(_listPeople[index].title),
-                              Checkbox(
-                                  value: _listPeople[index].value,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _listPeople[index].value = value!;
-                                      if (_listPeople[index].value) {
-                                        _listTaskTaken
-                                            .add(_listPeople[index].title);
-                                      } else {
-                                        _listTaskTaken
-                                            .remove(_listPeople[index].title);
-                                      }
-                                    });
-                                  })
-                            ],
-                          );
-                        },
-                        itemCount: _listPeople.length,
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context, _listTaskTaken);
-                      },
-                      child: Text('Save'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF209FA6),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          });
-        });
+  onAddButtonPress() {
+    Navigator.pop(context);
+    _listTask.add(Task(
+        name: nameCre.text,
+        location: _dropDownValue!,
+        startDate: startDateCre.text,
+        endDate: endDateCre.text,
+        numberMember: int.parse(numberCre.text),
+        description: descriptionCre.text,
+        status: true,
+        underTaken: ''));
+    nameCre.clear();
+    startDateCre.clear();
+    endDateCre.clear();
+    numberCre.clear();
+    descriptionCre.clear();
   }
 }

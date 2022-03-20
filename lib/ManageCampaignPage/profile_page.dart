@@ -355,7 +355,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             //   ),
                                             // ),
                                             Text(
-                                              'Money Raised - \$' +
+                                              'Money - \$' +
                                                   format.format(
                                                       listCharity[index]
                                                           .targetMoney),

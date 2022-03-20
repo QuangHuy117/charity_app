@@ -14,7 +14,7 @@ class CreateRecipientPage extends StatefulWidget {
 
 class _CreateRecipientPageState extends State<CreateRecipientPage> {
   Recipient? recipient;
-  var format = DateFormat('d '+'MMM '+'y');
+  var format = DateFormat('d ''MMM ''y');
   TextEditingController name = TextEditingController();
   TextEditingController address = TextEditingController();
   TextEditingController gender = TextEditingController();

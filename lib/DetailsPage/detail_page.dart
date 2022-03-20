@@ -179,7 +179,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Money Raised',
+                              'Money',
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Color(0xFF209FA6).withOpacity(0.5),

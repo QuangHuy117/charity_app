@@ -15,16 +15,31 @@ class _ManageUserTaskPageState extends State<ManageUserTaskPage> {
   List<Task> _listTask = [
     Task(
         name: 'Distributing gifts to children',
+        location: 'District 1',
+        startDate: '15/03/2022',
+        endDate: '15/05/2022',
+        numberMember: 5,
         description:
             'Take out the gift and divide it equally among the children in the orphanage',
+        status: true,
         underTaken: 'Dan Hermann'),
     Task(
         name: 'Task 2',
+        location: 'District 2',
+        startDate: '20/03/2022',
+        endDate: '20/05/2022',
+        numberMember: 2,
         description: 'Going to help and teach the children in the ABC City',
+        status: true,
         underTaken: 'Lolita Brown'),
     Task(
         name: 'Task 3',
+        location: 'District 3',
+        startDate: '25/03/2022',
+        endDate: '25/05/2022',
+        numberMember: 8,
         description: 'Going to help and teach the children in the DEF City',
+        status: true,
         underTaken: 'Neil Nicolas'),
   ];
 
@@ -206,7 +221,51 @@ class _ManageUserTaskPageState extends State<ManageUserTaskPage> {
                                                 color: Colors.grey),
                                           ),
                                           SizedBox(
-                                            height: size.height * 0.03,
+                                            height: size.height * 0.01,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.date_range,
+                                                color: Colors.grey,
+                                                size: 28,
+                                              ),
+                                              SizedBox(
+                                                width: size.width * 0.01,
+                                              ),
+                                              Text(
+                                                _listTask[index].startDate +
+                                                    ' - ' +
+                                                    _listTask[index].endDate,
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color(0xFF209FA6)),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: size.height * 0.02,
+                                          ),
+                                          Row(children: [
+                                            Icon(
+                                              Icons.place,
+                                              color: Colors.grey,
+                                              size: 28,
+                                            ),
+                                            SizedBox(
+                                              width: size.width * 0.01,
+                                            ),
+                                            Text(
+                                              _listTask[index].location,
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFF209FA6)),
+                                            ),
+                                          ]),
+                                          SizedBox(
+                                            height: size.height * 0.02,
                                           ),
                                           Text(
                                             'Assign by: ',

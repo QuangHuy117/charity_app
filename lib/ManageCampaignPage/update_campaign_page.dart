@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:io';
 
 import 'package:charity_app/models/charity.dart';
 import 'package:file_picker/file_picker.dart';
@@ -507,6 +506,10 @@ class _UpdateCampaignPageState extends State<UpdateCampaignPage> {
                     ),
                     SizedBox(
                       height: size.height * 0.02,
+                    ),
+                    Text(
+                      'Status',
+                      style: TextStyle(fontSize: 17, color: Colors.grey),
                     ),
                     Row(
                       children: [

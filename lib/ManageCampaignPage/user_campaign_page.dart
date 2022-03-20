@@ -251,7 +251,7 @@ class _CampaignUserPageState extends State<CampaignUserPage> {
                                           height: size.height * 0.025,
                                         ),
                                         Text(
-                                          '${listCharity[index].title}',
+                                          listCharity[index].title,
                                           style: TextStyle(
                                             fontSize: 24,
                                             color: Color(0xFF1B2441),
@@ -310,7 +310,7 @@ class _CampaignUserPageState extends State<CampaignUserPage> {
                                         //   ),
                                         // ),
                                         Text(
-                                          'Money Raised - \$' +
+                                          'Money - \$' +
                                               format.format(listCharity[index]
                                                   .targetMoney),
                                           style: TextStyle(
